@@ -2,7 +2,7 @@
 
 namespace Base\Models\Sale\Actions;
 
-use Base\Base\Exceptions\FoneNinjaException;
+use Base\Base\Exceptions\ERPException;
 use Base\Models\Client\Client;
 use Base\Models\Product\Product;
 use Base\Models\Sale\Sale;
@@ -38,7 +38,7 @@ final readonly class CreateAction
 
                 // Valida estoque disponível
                 if ($product->amount < $item['quantidade']) {
-                    throw FoneNinjaException::withMessages([
+                    throw ERPException::withMessages([
                         'estoque' => "Estoque insuficiente para o produto {$product->name}",
                     ]);
                 }

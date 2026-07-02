@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">FONE NINJA - ERP</div>
+                <div class="title">ERP</div>
             </div>
         </div>
     </body>

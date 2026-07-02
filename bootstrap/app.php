@@ -1,6 +1,6 @@
 <?php
 
-use Base\Base\Exceptions\FoneNinjaException;
+use Base\Base\Exceptions\ERPException;
 use Base\Commands\UpdatePositionQueries;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -23,7 +23,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
 
         $exceptions->dontReport([
-            FoneNinjaException::class
+            ERPException::class
         ]);
 
     })
