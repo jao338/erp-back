@@ -28,3 +28,4 @@ coverage.xml
 /nginx/log
 /nginx/conf/default.conf
 docker-compose.yml
+storage/api-docs/
