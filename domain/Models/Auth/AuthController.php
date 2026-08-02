@@ -12,9 +12,21 @@ use Base\Models\Auth\Resources\LoginResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use OpenApi\Attributes as OA;
 
 class AuthController extends Controller {
 
+    #[OA\Post(
+    path: '/api/login',
+    summary: 'Realiza login',
+    tags: ['Auth'],
+    responses: [
+            new OA\Response(
+                response: 200,
+                description: 'OK'
+            )
+        ]
+    )]
     public function login(AuthLoginRequest $request, LoginAction $action): JsonResource
     {
         $user = $action->handle($request->validated());
