@@ -17,7 +17,7 @@ use OpenApi\Attributes as OA;
 class AuthController extends Controller {
 
     #[OA\Post(
-    path: '/api/login',
+    path: '/login',
     summary: 'Realiza login',
     tags: ['Auth'],
     responses: [

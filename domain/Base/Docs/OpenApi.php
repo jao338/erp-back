@@ -10,7 +10,7 @@ use OpenApi\Attributes as OA;
     description: 'API do ERP'
 )]
 #[OA\Server(
-    url: 'http://localhost/api'
+    url: L5_SWAGGER_CONST_HOST
 )]
 class OpenApi
 {
