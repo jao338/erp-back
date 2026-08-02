@@ -5,6 +5,8 @@ namespace Base\Models\Auth;
 use App\Http\Controllers\Controller;
 use Base\Base\Docs\Schemas\Auth\AuthLoginRequestSchema;
 use Base\Base\Docs\Schemas\Auth\AuthLoginResponseSchema;
+use Base\Base\Docs\Schemas\Errors\UnauthorizedResponseSchema;
+use Base\Base\Docs\Schemas\Errors\ValidationErrorResponseSchema;
 use Base\Models\Auth\Actions\LoginAction;
 use Base\Models\Auth\Actions\LogoutAction;
 use Base\Models\Auth\Actions\RegisterAction;
@@ -35,7 +37,15 @@ class AuthController extends Controller {
             content: new OA\JsonContent(
                 ref: AuthLoginResponseSchema::class
                 )
+            ),
+
+        new OA\Response(
+            response: 422,
+            description: 'Erro de validação',
+            content: new OA\JsonContent(
+                ref: ValidationErrorResponseSchema::class
             )
+        )
         ]
     )]
     public function login(AuthLoginRequest $request, LoginAction $action): JsonResource

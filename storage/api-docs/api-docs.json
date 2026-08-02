@@ -38,6 +38,16 @@
                                 }
                             }
                         }
+                    },
+                    "422": {
+                        "description": "Erro de validação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -83,6 +93,51 @@
                         "description": "Token Bearer utilizado para autenticação",
                         "type": "string",
                         "example": "1|xKgM4...."
+                    }
+                },
+                "type": "object"
+            },
+            "NotFoundResponseSchema": {
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "example": "Registro não encontrado."
+                    }
+                },
+                "type": "object"
+            },
+            "UnauthorizedResponseSchema": {
+                "properties": {
+                    "message": {
+                        "description": "Não autorizado",
+                        "type": "string",
+                        "example": "Credenciais inválidas."
+                    }
+                },
+                "type": "object"
+            },
+            "ValidationErrorResponse": {
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "example": "O valor do campo passado é inválido"
+                    },
+                    "errors": {
+                        "type": "object",
+                        "example": {
+                            "email": [
+                                "O campo email é obrigatório."
+                            ],
+                            "password": [
+                                "A senha deve possuir no mínimo 8 caracteres."
+                            ]
+                        },
+                        "additionalProperties": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
                     }
                 },
                 "type": "object"
