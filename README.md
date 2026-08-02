@@ -1,4 +1,4 @@
-# Fone Ninja - Desafio Técnico
+# ERP
 
 Este projeto utiliza **Laravel + Nginx + PHP-FPM + MySQL** rodando em containers Docker.
 Os arquivos sensíveis ou específicos de ambiente **não são versionados**; para isso, são fornecidos arquivos `.example` e `-dev` que devem ser copiados e configurados localmente.
@@ -49,8 +49,8 @@ Os seguintes arquivos **não são versionados** e devem ser criados a partir dos
 ### 1️⃣ Clone o repositório
 
 ```bash
-git clone https://github.com/jao338/fone-ninja-erp-back.git
-cd fone-ninja-erp-back
+git clone https://github.com/jao338/erp-back.git
+cd erp-back
 ```
 
 ---
@@ -161,16 +161,9 @@ Failed to open stream: Permission denied
 
 ---
 
-## 🌐 Criar base de dados e popular base de dados
+## 🌐 Popular base de dados
 
-Depois de ter configurado sua variável de ambiente, instalado todas as dependências e subido os serviços, faça:
-Com alguma ferramenta como o MySql Workbench, crie a sua base de dados:
-
-```
-CREATE DATABASE nome_do_banco;
-```
-
-Agora que a base de dados foi criada, rode o seguinte comando na raiz do projeto: 
+Rode o seguinte comando na raiz do projeto para criar e popular todas as tabelas do sistema: 
 
 ```
 docker-compose run --rm php php artisan migrate:fresh --seed

@@ -5,7 +5,7 @@ namespace Base\Base\Exceptions;
 use Exception;
 use Illuminate\Http\JsonResponse;
 
-class FoneNinjaException extends Exception {
+class ERPException extends Exception {
 
     public function __construct(string $message, int $code = 422, Exception $previous = null)
     {

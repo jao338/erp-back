@@ -2,7 +2,7 @@
 
 namespace Base\Models\Auth\Actions;
 
-use Base\Base\Exceptions\FoneNinjaException;
+use Base\Base\Exceptions\ERPException;
 use Base\Models\User\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -13,12 +13,12 @@ final readonly class LoginAction {
 
     public function handle(array $data): User
     {
-        $email = $data['email'];
+        $email    = $data['email'];
         $password = $data['password'];
 
         $user = User::where('email', $email)->first();
 
-        throw_if(!$user || !Hash::check($password, $user->password), new FoneNinjaException(__('messages.invalid_login')));
+        throw_if(!$user || !Hash::check($password, $user->password), new ERPException(__('messages.invalid_login')));
 
         Auth::login($user);
 
