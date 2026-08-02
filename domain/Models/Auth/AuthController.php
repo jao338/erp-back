@@ -3,6 +3,8 @@
 namespace Base\Models\Auth;
 
 use App\Http\Controllers\Controller;
+use Base\Base\Docs\Schemas\Auth\AuthLoginRequestSchema;
+use Base\Base\Docs\Schemas\Auth\AuthLoginResponseSchema;
 use Base\Models\Auth\Actions\LoginAction;
 use Base\Models\Auth\Actions\LogoutAction;
 use Base\Models\Auth\Actions\RegisterAction;
@@ -18,12 +20,21 @@ class AuthController extends Controller {
 
     #[OA\Post(
     path: '/login',
-    summary: 'Realiza login',
-    tags: ['Auth'],
+    summary: 'Autentica um usuário',
+    tags: ['Autenticação'],
+    requestBody: new OA\RequestBody(
+        required: true,
+        content: new OA\JsonContent(
+            ref: AuthLoginRequestSchema::class
+        )
+    ),
     responses: [
-            new OA\Response(
-                response: 200,
-                description: 'OK'
+        new OA\Response(
+            response: 200,
+            description: 'Login realizado com sucesso',
+            content: new OA\JsonContent(
+                ref: AuthLoginResponseSchema::class
+                )
             )
         ]
     )]
