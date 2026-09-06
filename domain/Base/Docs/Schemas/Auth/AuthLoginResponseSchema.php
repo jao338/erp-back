@@ -20,8 +20,9 @@ class AuthLoginResponseSchema
     public string $nome;
 
     #[OA\Property(
-        description: 'Token Bearer utilizado para autenticação',
+        description: 'Token Bearer utilizado para autenticação. Pode ser nulo quando a autenticação ocorre via sessão.',
+        nullable: true,
         example: '1|xKgM4....'
     )]
-    public string $token;
+    public ?string $token;
 }
