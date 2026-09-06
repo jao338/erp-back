@@ -10,7 +10,23 @@ use OpenApi\Attributes as OA;
     description: 'API do ERP'
 )]
 #[OA\Server(
-    url: L5_SWAGGER_CONST_HOST
+    url: L5_SWAGGER_CONST_HOST,
+    description: 'Servidor da API'
+)]
+
+#[OA\Tag(
+    name: 'Autenticação',
+    description: 'Endpoints relacionados à autenticação.'
+)]
+
+#[OA\Tag(
+    name: 'Usuários',
+    description: 'Endpoints relacionados aos usuários.'
+)]
+
+#[OA\Tag(
+    name: 'Produtos',
+    description: 'Endpoints relacionados aos produtos.'
 )]
 class OpenApi
 {
