@@ -12,6 +12,7 @@ use Base\Models\Auth\Resources\LoginResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Response;
 
 class AuthController extends Controller {
 
@@ -22,18 +23,18 @@ class AuthController extends Controller {
         return new LoginResource($user);
     }
 
-    public function register(AuthRegisterRequest $request, RegisterAction $action): JsonResource
+    public function register(AuthRegisterRequest $request, RegisterAction $action): JsonResponse
     {
         $user = $action->handle($request->validated());
 
-        return new LoginResource($user);
+        return response()->json(['message' => __('messages.success_register')]);
     }
 
-    public function logout(Request $request, LogoutAction $action): JsonResponse
+    public function logout(Request $request, LogoutAction $action): Response
     {
         $action->handle($request);
 
-        return response()->json(['message' => __('messages.success_logout')]);
+        return response()->noContent();
     }
 
     public function me(): JsonResource
