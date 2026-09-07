@@ -64,5 +64,7 @@ return [
     'total_paid_amount_less_than_charge'       => 'Valor total pago é menor que o valor da fatura.',
     'payments_not_exists'                      => 'Nenhum pagamento encontrado!',
     'charge_has_payments'                      => 'Fatura está em processo de pagamento!',
-    'company_alredy_registered'                => 'Empresa já cadastrada no sistema, favor entrar em contato com a Base'
+    'company_alredy_registered'                => 'Empresa já cadastrada no sistema, favor entrar em contato com a Base',
+    'success_register'                         => 'Usuário cadastrado com sucesso! Entre em contato com o departamento de TI e solicite a ativação da conta.',
+    'without_access'                           => 'Usuário sem acesso! Entre em contato com o departamento de TI.'
 ];
