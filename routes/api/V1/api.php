@@ -15,8 +15,12 @@ Route::group([
     Route::group([
         'namespace' => 'Auth'
     ], function (): void {
-        Route::post('login', [AuthController::class, 'login'])->name('login');
-        Route::post('register', [AuthController::class, 'register'])->name('register');
+        Route::post('login', [AuthController::class, 'login'])
+            ->name('login')
+            ->middleware('throttle:attemps-auth');
+        Route::post('register', [AuthController::class, 'register'])
+            ->name('register')
+            ->middleware('throttle:attemps-auth');
     });
 
     Route::group([
