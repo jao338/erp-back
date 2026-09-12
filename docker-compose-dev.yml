@@ -53,15 +53,5 @@ services:
     networks:
       - docker_example
 
-  composer:
-    image: composer:2
-    container_name: docker_example_composer
-    working_dir: /var/www/html
-    volumes:
-      - ./:/var/www/html
-    networks:
-      - docker_example
-    entrypoint: [ "composer" ]
-
 volumes:
   mysql_data:

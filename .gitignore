@@ -28,3 +28,5 @@ coverage.xml
 /nginx/log
 /nginx/conf/default.conf
 docker-compose.yml
+storage/api-docs/
+resources/views/vendor/l5-swagger/
