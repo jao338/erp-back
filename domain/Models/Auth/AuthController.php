@@ -3,6 +3,7 @@
 namespace Base\Models\Auth;
 
 use App\Http\Controllers\Controller;
+use Base\Models\Auth\Actions\MakeFirstAccessAction;
 use Base\Models\Auth\Actions\LoginAction;
 use Base\Models\Auth\Actions\LogoutAction;
 use Base\Models\Auth\Actions\RegisterAction;
@@ -25,9 +26,9 @@ class AuthController extends Controller {
 
     public function register(AuthRegisterRequest $request, RegisterAction $action): JsonResponse
     {
-        $user = $action->handle($request->validated());
+        $action->handle($request->validated());
 
-        return response()->json(['message' => __('messages.success_register')]);
+        return response()->json(['message' => __('messages.do_it_first_access')]);
     }
 
     public function logout(Request $request, LogoutAction $action): Response
@@ -35,6 +36,13 @@ class AuthController extends Controller {
         $action->handle($request);
 
         return response()->noContent();
+    }
+
+    public function firstAccess(AuthRegisterRequest $request, MakeFirstAccessAction $action): JsonResponse
+    {
+        $action->handle($request->validated());
+
+        return response()->json(['message' => __('messages.code_sent_via_email')]);
     }
 
     public function me(): JsonResource
