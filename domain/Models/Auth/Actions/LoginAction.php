@@ -19,6 +19,7 @@ final readonly class LoginAction {
         $user = User::where('email', $email)->first();
 
         throw_if(!$user || !Hash::check($password, $user->password), new ERPException(__('messages.invalid_login')));
+        throw_if(!$user->verify_at, new ERPException(__('messages.without_access')));
 
         Auth::login($user);
 

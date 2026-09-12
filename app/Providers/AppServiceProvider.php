@@ -54,7 +54,7 @@ class AppServiceProvider extends ServiceProvider {
         $this->configureUrlScheme();
         $this->configureModels();
         $this->configureDates();
-        $this->configureLoginThrottle();
+        $this->configureAuthThrottle();
         $this->configureFactoriesNameSpace();
     }
 
@@ -110,26 +110,23 @@ class AppServiceProvider extends ServiceProvider {
     }
 
     /**
-     * Configure the application's login throttle.
+     * Configure the application's attemps-auth throttle.
      */
-    private function configureLoginThrottle(): void
+    private function configureAuthThrottle(): void
     {
-        RateLimiter::for('login', function (Request $request) {
-            return [
-                Limit::perMinute(config('auth.login_attempts'), config('auth.login_decay_minutes'))
-                     ->by($request->input('email') ?: $request->ip())
-                     ->response(function (Request $request, array $headers) {
-                         $seconds = $headers['Retry-After'];
+        RateLimiter::for('attemps-auth', function (Request $request) {
+            $email = Str::lower((string) $request->input('email'));
 
-                         $message = [
-                             'email' => Lang::get('auth.throttle', [
-                                 'seconds' => $seconds,
-                             ])
-                         ];
-
-                         return response($message, 429, $headers);
-                     }),
-            ];
+            return Limit::perMinute(5)
+                ->by($email.'|'.$request->ip())
+                ->response(function (Request $request, array $headers) {
+                    return response()->json([
+                        'message' => __('auth.throttle', [
+                            'seconds' => $headers['Retry-After'],
+                        ]),
+                        'retry_after' => (int) $headers['Retry-After'],
+                    ], 429, $headers);
+                });
         });
     }
 }

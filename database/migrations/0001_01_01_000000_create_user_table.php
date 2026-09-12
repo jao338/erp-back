@@ -17,11 +17,27 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('name');
+            $table->timestamp('verify_at')->nullable();
+            $table->boolean('bloqued')->default(false);
             $table->rememberToken();
             $table->timestamps();
-
             $table->index('uuid');
             $table->index('email');
+        });
+
+        Schema::create('otp_codes', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')
+                ->constrained('user')
+                ->cascadeOnDelete();
+            $table->string('code');
+            $table->smallInteger('type'); // 1 = FIRST ACCESS, 2 = PASSWORD RESET
+            $table->timestamp('expires_at');
+            $table->timestamp('used_at')->nullable();
+            $table->unsignedTinyInteger('attempts')->default(0); // max = 5
+            $table->timestamps();
+            $table->index(['user_id', 'type']);
+            $table->index('expires_at');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -45,7 +61,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('user');
+        Schema::dropIfExists('otp_codes');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
     }
