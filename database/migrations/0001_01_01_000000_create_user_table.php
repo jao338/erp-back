@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('name');
             $table->timestamp('verify_at')->nullable();
+            $table->boolean('bloqued')->default(false);
             $table->rememberToken();
             $table->timestamps();
             $table->index('uuid');
@@ -33,7 +34,7 @@ return new class extends Migration
             $table->smallInteger('type'); // 1 = FIRST ACCESS, 2 = PASSWORD RESET
             $table->timestamp('expires_at');
             $table->timestamp('used_at')->nullable();
-            $table->unsignedTinyInteger('attempts')->default(0); // max = 3
+            $table->unsignedTinyInteger('attempts')->default(0); // max = 5
             $table->timestamps();
             $table->index(['user_id', 'type']);
             $table->index('expires_at');

@@ -2,7 +2,9 @@
 
 namespace Base\Models\User;
 
+use Base\Models\OTPCodes\OTPCodes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
@@ -18,7 +20,10 @@ class User extends Authenticatable {
     public $incrementing   = true;
     public $timestamps     = true;
 
-    protected $casts  = [];
+    protected $casts = [
+        'id'        => 'integer',
+        'verify_at' => 'datetime',
+    ];
 
     protected $fillable = [
         'uuid',
@@ -43,9 +48,9 @@ class User extends Authenticatable {
         return $this->activeToken ?? null;
     }
 
-    public function getRouteKeyName(): string
+    public function otpCodes(): HasMany
     {
-        return 'uuid';
+        return $this->hasMany(OTPCodes::class, 'user_id', 'id');
     }
 
     protected static function newFactory()
@@ -60,6 +65,7 @@ class User extends Authenticatable {
                 $user->uuid = (string) Str::uuid();
             }
             $user->password     = bcrypt($user->password);
+            $user->verify_at    = NULL;
         });
     }
 }
