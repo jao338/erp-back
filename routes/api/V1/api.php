@@ -13,18 +13,27 @@ Route::group([
 ], function (): void {
 
     Route::group([
-        'namespace' => 'Auth'
+        'namespace' => 'Auth',
     ], function (): void {
-        Route::post('login', [AuthController::class, 'login'])->name('login');
-        Route::post('register', [AuthController::class, 'register'])->name('register');
+        Route::post('login', [AuthController::class, 'login'])
+            ->name('login')
+            ->middleware(['throttle:attemps-auth', 'guest']);
+
+        Route::post('register', [AuthController::class, 'register'])
+            ->name('register')
+            ->middleware(['throttle:attemps-auth', 'guest']);
+
+        Route::post('first-access', [AuthController::class, 'firstAccess'])
+            ->name('first.access')
+            ->middleware(['throttle:attemps-auth', 'guest']);
     });
 
     Route::group([
         'middleware' => ['auth:sanctum'],
     ], function (): void {
 
-         Route::group([
-            'prefix' => 'lookups'
+        Route::group([
+            'prefix' => 'lookups',
         ], function (): void {
             Route::get('suppliers', [SupplierController::class, 'lookup'])->name('lookups.suppliers');
             Route::get('clients', [ClientController::class, 'lookup'])->name('lookups.clients');
@@ -38,6 +47,7 @@ Route::group([
         Route::apiResource('suppliers', SupplierController::class)
             ->only(['index', 'show'])
             ->names('suppliers');
+
         Route::apiResource('clients', ClientController::class)
             ->only(['index', 'show'])
             ->names('clients');
