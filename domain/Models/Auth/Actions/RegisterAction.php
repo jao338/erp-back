@@ -9,23 +9,8 @@ final readonly class RegisterAction {
 
     public function __construct(protected User $model) {}
 
-    public function handle(array $data): User
+    public function handle(array $data): void
     {
-        $user = $this->model->create($data);
-
-        Auth::login($user);
-
-        $this->setToken($user);
-
-        return $user;
-    }
-
-    private function setToken(User $user): void
-    {
-        if ( ! requestFromFrontend()) {
-            $token = $user->createToken('token-api')->plainTextToken;
-
-            $user->setActiveToken($token);
-        }
+        $this->model->create($data);
     }
 }

@@ -22,27 +22,30 @@ final readonly class MakeFirstAccessAction {
     public function handle(array $data): void
     {
         $user = $this->model->where('email', $data['email'])->first();
-        $otp = $user->otpCodes->whereIsFirstAccess()->first();
+        $otp  = $user->otpCodes->whereIsFirstAccess()->first();
 
         if($otp){
-
             if($otp->attempts >= 5){
-                // Bloquear o usuário, atualizar campo "bloqued"
+
+                $user->update(['blocked' => true]);
+                $user->save();
+
                 throw new ERPException(__('messages.too_many_attempts'));
             }
 
             $otp->increment('attempts');
 
             // Gerar com hash depois
-            $otp->code->random_int(10000, 99999);
+            $otp->code       = random_int(10000, 99999);
             $otp->expires_at = Carbon::now()->addMinutes(15);
             $otp->save();
 
             $this->sendEmailService->send(
                 $user->email,
                 mail: new FirstAccessMail(
-                    user: $user,
-                    code: $otp->code,
+                    code:           $otp->code,
+                    name:           $user->name,
+                    expires_at:     now()->addMinutes(15)
                 ),
             );
 
