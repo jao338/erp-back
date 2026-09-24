@@ -4,11 +4,11 @@ namespace Base\Base\Mail;
 
 use Base\Base\Mail\AbstractMail;
 use Base\Models\User\User;
+use Illuminate\Support\Facades\Lang;
 
 final class FirstAccessMail extends AbstractMail
 {
     public function __construct(
-        private readonly User $user,
         private readonly string $code,
         private readonly string $name,
         private readonly string $expires_at,
@@ -16,18 +16,17 @@ final class FirstAccessMail extends AbstractMail
 
     protected function subject(): string
     {
-        return 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+        return Lang::get('messages.emails.first-access.subject', ['code' => $this->code]);
     }
 
     protected function view(): string
     {
-        return 'emails.first-access';
+        return 'emails.first_access';
     }
 
     protected function data(): array
     {
         return [
-            'user'       => $this->user,
             'code'       => $this->code,
             'name'       => $this->name,
             'expires_at' => $this->expires_at,

@@ -14,21 +14,10 @@ abstract class AbstractMail extends Mailable implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /**
-     * Assunto do e-mail.
-     */
     abstract protected function subject(): string;
 
-    /**
-     * View utilizada pelo e-mail.
-     */
     abstract protected function view(): string;
 
-    /**
-     * Dados enviados para a view.
-     *
-     * @return array<string, mixed>
-     */
     abstract protected function data(): array;
 
     public function envelope(): Envelope
