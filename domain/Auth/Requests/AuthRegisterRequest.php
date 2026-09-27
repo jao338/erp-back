@@ -16,8 +16,6 @@ class AuthRegisterRequest extends FormRequest
                 'bail',
                 'required',
                 'email',
-                'exists:user,email',
-                new VerifyIFFirstAccessRule()
             ],
             'name' => [
                 'required',
