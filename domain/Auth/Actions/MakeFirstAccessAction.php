@@ -2,6 +2,7 @@
 
 namespace Base\Auth\Actions;
 
+use Base\Base\Enums\OtpType;
 use Base\Base\Exceptions\ERPException;
 use Base\Base\Mail\FirstAccessMail;
 use Base\Base\Mail\SendEmailService;
@@ -20,11 +21,10 @@ final readonly class MakeFirstAccessAction {
     public function handle(array $data): void
     {
         $user = $this->model->where('email', $data['email'])->first();
-        $otp  = $user->otpCodes->whereIsFirstAccess()->first();
+        $otp  = $user->otpCodes()->whereIsFirstAccess()->first();
 
         if($otp){
             if($otp->attempts >= 5){
-
                 $user->update(['blocked' => true]);
                 $user->save();
 
@@ -55,6 +55,7 @@ final readonly class MakeFirstAccessAction {
             'code'          => random_int(10000, 99999), // Gerar com hash depois
             'expires_at'    => Carbon::now()->addMinutes(15),
             'used_at'       => NULL,
+            'type'          => OtpType::FIRST_ACCESS,
             'attempts'      => 0,
         ]);
 
