@@ -23,8 +23,8 @@ return [
     'charge_has_payments'                      => 'Fatura está em processo de pagamento!',
     'company_alredy_registered'                => 'Empresa já cadastrada no sistema, favor entrar em contato com a Base',
     'do_it_first_access'                       => 'Tudo certo! Agora faça o primeiro acesso para continuar e ter acesso ao sistema!',
-    'without_access'                           => 'Usuário sem acesso! Entre em contato com o departamento de TI.',
-    'code_sent_via_email'                      => 'Código enviado por e-mail!',
+    'without_access'                           => 'Usuário sem acesso! Faço o primeiro acesso antes de acessar o sistema!',
+    'code_sent_via_email'                      => 'O código enviado por e-mail! Acesse sua caixa de e-mail.',
     'emails.first-access.subject'              => 'Seu código de acesso é :code',
     'emails.first-access.title'                => 'Código de confirmação de conta.',
     'emails.first-access.info'                 => 'Para concluir seu primeiro acesso, utilize o código de confirmação abaixo:',
@@ -40,5 +40,6 @@ return [
     'yours_sincerely'                          => 'Atenciosamente',
     'email_not_reply'                          => 'Este é um e-mail automático. Por favor, não responda a esta mensagem.',
     'all_rights_reserved'                      => 'Todos os direitos reservados.',
-    'user_verified'                            => 'Usuário já verificado!'
+    'user_verified'                            => 'Usuário verificado! Faça login novamente e aproveite!',
+    'code_not_found'                           => 'Código não encontrado!',
 ];
