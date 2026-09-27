@@ -2,12 +2,13 @@
 
 namespace Base\Models\OTPCodes;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Query\Builder;
-use Illuminate\Support\Str;
-use Laravel\Sanctum\HasApiTokens;
+use Base\Base\Enums\OtpType;
+use Base\Models\User\User;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class OTPCodes {
+class OTPCodes extends Model {
 
     protected $table       = 'otp_codes';
     protected $primaryKey  = 'id';
@@ -18,7 +19,7 @@ class OTPCodes {
 
     protected $casts = [
         'id'         => 'integer',
-        'expires_at' => 'datetime',
+        'expires_at' => 'datetime: Y-m-d H:i',
         'used_at'    => 'datetime'
     ];
 
@@ -31,9 +32,19 @@ class OTPCodes {
         'attempts',
     ];
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
     public function scopeWhereIsFirstAccess($query): Builder
     {
-        return $query->where('type', 1);
+        return $query->where('type', OtpType::FIRST_ACCESS);
+    }
+
+    public function scopeWhereIsNotUsed($query): Builder
+    {
+        return $query->where('used_at', NULL);
     }
 
 }
