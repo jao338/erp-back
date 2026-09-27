@@ -7,9 +7,12 @@ use Base\Auth\Actions\LoginAction;
 use Base\Auth\Actions\LogoutAction;
 use Base\Auth\Actions\MakeFirstAccessAction;
 use Base\Auth\Actions\RegisterAction;
+use Base\Auth\Actions\VerifyCodeAccessAction;
+use Base\Auth\Requests\AuthFirstAccessRequest;
 use Base\Auth\Requests\AuthLoginRequest;
 use Base\Auth\Requests\AuthRegisterRequest;
-use Base\Auth\Resources\LoginResource;
+use Base\Auth\Requests\AuthVerifyCodeAccessRequest;
+use Base\Models\User\UserResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -21,7 +24,7 @@ class AuthController extends Controller {
     {
         $user = $action->handle($request->validated());
 
-        return new LoginResource($user);
+        return new UserResource($user);
     }
 
     public function register(AuthRegisterRequest $request, RegisterAction $action): JsonResponse
@@ -38,17 +41,24 @@ class AuthController extends Controller {
         return response()->noContent();
     }
 
-    public function firstAccess(AuthRegisterRequest $request, MakeFirstAccessAction $action): JsonResponse
+    public function firstAccess(AuthFirstAccessRequest $request, MakeFirstAccessAction $action): JsonResponse
     {
         $action->handle($request->validated());
 
         return response()->json(['message' => __('messages.code_sent_via_email')]);
     }
 
+    public function verifyCodeAccess(AuthVerifyCodeAccessRequest $request, VerifyCodeAccessAction $action): JsonResponse
+    {
+        $action->handle($request->validated());
+
+        return response()->json(['message' => __('messages.user_verified')]);
+    }
+
     public function me(): JsonResource
     {
         $user = auth()->user();
 
-        return new LoginResource($user);
+        return new UserResource($user);
     }
 }

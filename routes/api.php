@@ -26,6 +26,10 @@ Route::group([
         Route::post('first-access', [AuthController::class, 'firstAccess'])
             ->name('first.access')
             ->middleware(['throttle:attemps-auth', 'guest']);
+
+        Route::post('verify-code-access', [AuthController::class, 'verifyCodeAccess'])
+            ->name('verify.first.access')
+            ->middleware(['throttle:attemps-auth', 'guest']);
     });
 
     Route::group([

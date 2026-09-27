@@ -17,7 +17,7 @@ class VerifyIFFirstAccessRule implements ValidationRule
     {
         $user = User::where('email', $value)->first();
 
-        if($user->verify_at){
+        if($user && $user->verify_at){
             $fail(__('messages.user_verified'));
         }
     }
