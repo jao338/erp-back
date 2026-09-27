@@ -70,26 +70,15 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: erp_back_queue
-    hostname: erp_back_queue
-    restart: unless-stopped
+    hostname: queue
     depends_on:
-      - redis
       - mysql
+      - redis
     volumes:
-      - ./:/var/www/html
+      - .:/var/www/html
     networks:
       - erp_back
-    command: php artisan queue:work redis --sleep=3 --tries=3 --timeout=90
-
-  composer:
-    image: composer:2
-    container_name: erp_back_composer
-    working_dir: /var/www/html
-    volumes:
-      - ./:/var/www/html
-    networks:
-      - erp_back
-    entrypoint: [ "composer" ]
+    command: php artisan horizon
 
 volumes:
   mysql_data:
