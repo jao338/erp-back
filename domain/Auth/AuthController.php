@@ -1,15 +1,15 @@
 <?php
 
-namespace Base\Models\Auth;
+namespace Base\Auth;
 
 use App\Http\Controllers\Controller;
-use Base\Models\Auth\Actions\MakeFirstAccessAction;
-use Base\Models\Auth\Actions\LoginAction;
-use Base\Models\Auth\Actions\LogoutAction;
-use Base\Models\Auth\Actions\RegisterAction;
-use Base\Models\Auth\Requests\AuthLoginRequest;
-use Base\Models\Auth\Requests\AuthRegisterRequest;
-use Base\Models\Auth\Resources\LoginResource;
+use Base\Auth\Actions\LoginAction;
+use Base\Auth\Actions\LogoutAction;
+use Base\Auth\Actions\MakeFirstAccessAction;
+use Base\Auth\Actions\RegisterAction;
+use Base\Auth\Requests\AuthLoginRequest;
+use Base\Auth\Requests\AuthRegisterRequest;
+use Base\Auth\Resources\LoginResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;

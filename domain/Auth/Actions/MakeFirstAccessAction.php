@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Models\Auth\Actions;
+namespace Base\Auth\Actions;
 
 use Base\Base\Exceptions\ERPException;
 use Base\Base\Mail\FirstAccessMail;
@@ -8,8 +8,6 @@ use Base\Base\Mail\SendEmailService;
 use Base\Models\OTPCodes\OTPCodes;
 use Base\Models\User\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 final readonly class MakeFirstAccessAction {
 

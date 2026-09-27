@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Models\Auth\Actions;
+namespace Base\Auth\Actions;
 
 use Base\Base\Exceptions\ERPException;
 use Base\Models\User\User;

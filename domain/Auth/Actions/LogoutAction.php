@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Models\Auth\Actions;
+namespace Base\Auth\Actions;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

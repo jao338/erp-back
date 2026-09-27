@@ -1,9 +1,8 @@
 <?php
 
-namespace Base\Models\Auth\Actions;
+namespace Base\Auth\Actions;
 
 use Base\Models\User\User;
-use Illuminate\Support\Facades\Auth;
 
 final readonly class RegisterAction {
 

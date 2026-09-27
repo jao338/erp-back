@@ -1,9 +1,8 @@
 <?php
 
-namespace Base\Models\Auth\Requests;
+namespace Base\Auth\Requests;
 
 use App\Rules\VerifyIFFirstAccessRule;
-use Base\Base\Rules\PasswordRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AuthRegisterRequest extends FormRequest
