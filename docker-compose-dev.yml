@@ -1,15 +1,15 @@
 version: '3.8'
 
 networks:
-  docker_example:
+  erp_back:
     external: true
-    name: docker_example
+    name: erp_back
 
 services:
   nginx:
     image: nginx:stable-alpine
-    container_name: docker_example_nginx
-    hostname: docker_example_nginx
+    container_name: erp_back_nginx
+    hostname: erp_back_nginx
     restart: unless-stopped
     depends_on:
       - php
@@ -20,26 +20,38 @@ services:
       - ./nginx/log:/var/log/nginx
       - ./nginx/conf/default.conf:/etc/nginx/conf.d/default.conf
     networks:
-      - docker_example
+      - erp_back
 
   php:
-    image: php:8.3-fpm-alpine
-    container_name: docker_example_php
-    hostname: docker_example_php
-    restart: unless-stopped
-    depends_on:
-      - mysql
-    volumes:
-      - ./:/var/www/html
-    networks:
-      - docker_example
     build:
       context: .
       dockerfile: Dockerfile
+    image: php:8.3-fpm-alpine
+    container_name: erp_back_php
+    hostname: erp_back_php
+    restart: unless-stopped
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - erp_back
+
+  redis:
+    image: redis:7-alpine
+    container_name: erp_back_redis
+    hostname: erp_back_redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    networks:
+      - erp_back
+
   mysql:
     image: mysql:8.0
-    container_name: docker_example_mysql
-    hostname: docker_example_mysql
+    container_name: erp_back_mysql
+    hostname: erp_back_mysql
     restart: unless-stopped
     ports:
       - "3307:3306"
@@ -51,17 +63,34 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
-      - docker_example
+      - erp_back
+
+  queue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: erp_back_queue
+    hostname: erp_back_queue
+    restart: unless-stopped
+    depends_on:
+      - redis
+      - mysql
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - erp_back
+    command: php artisan queue:work redis --sleep=3 --tries=3 --timeout=90
 
   composer:
     image: composer:2
-    container_name: docker_example_composer
+    container_name: erp_back_composer
     working_dir: /var/www/html
     volumes:
       - ./:/var/www/html
     networks:
-      - docker_example
+      - erp_back
     entrypoint: [ "composer" ]
 
 volumes:
   mysql_data:
+  redis_data:
