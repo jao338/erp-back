@@ -14,24 +14,28 @@ abstract class AbstractMail extends Mailable implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    abstract protected function subject(): string;
+    abstract protected function getSubject(): string;
+    abstract protected function getView(): string;
 
-    abstract protected function view(): string;
+    abstract protected function getdata(): array;
 
-    abstract protected function data(): array;
+    public function build(): static
+    {
+        return $this->subject($this->getSubject());
+    }
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: $this->subject(),
+            subject: $this->getSubject(),
         );
     }
 
     public function content(): Content
     {
         return new Content(
-            view: $this->view(),
-            with: $this->data(),
+            view: $this->getView(),
+            with: $this->getData(),
         );
     }
 }

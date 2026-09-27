@@ -14,17 +14,17 @@ final class FirstAccessMail extends AbstractMail
         private readonly string $expires_at,
     ) {}
 
-    protected function subject(): string
+    protected function getSubject(): string
     {
         return Lang::get('messages.emails.first-access.subject', ['code' => $this->code]);
     }
 
-    protected function view(): string
+    protected function getView(): string
     {
         return 'emails.first_access';
     }
 
-    protected function data(): array
+    protected function getData(): array
     {
         return [
             'code'       => $this->code,
