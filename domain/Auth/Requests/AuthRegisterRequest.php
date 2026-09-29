@@ -19,7 +19,8 @@ class AuthRegisterRequest extends FormRequest
             ],
             'name' => [
                 'required',
-                'string'
+                'string',
+                'min:2'
             ],
             'password' => [
                 'required',
@@ -29,7 +30,6 @@ class AuthRegisterRequest extends FormRequest
             'confirm_password' => [
                 'required',
                 'string',
-                'min:8',
                 'same:password',
             ],
         ];
