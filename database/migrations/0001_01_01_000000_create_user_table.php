@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('name');
             $table->timestamp('verify_at')->nullable();
-            $table->boolean('bloqued')->default(false);
+            $table->boolean('blocked')->default(false);
             $table->rememberToken();
             $table->timestamps();
             $table->index('uuid');

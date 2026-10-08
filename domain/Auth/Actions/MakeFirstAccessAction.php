@@ -3,7 +3,6 @@
 namespace Base\Auth\Actions;
 
 use Base\Base\Enums\OtpType;
-use Base\Base\Exceptions\ERPException;
 use Base\Base\Mail\FirstAccessMail;
 use Base\Base\Mail\SendEmailService;
 use Base\Models\OTPCodes\OTPCodes;
@@ -24,15 +23,6 @@ final readonly class MakeFirstAccessAction {
         $otp  = $user->otpCodes()->whereIsFirstAccess()->first();
 
         if($otp){
-            if($otp->attempts >= 5){
-                $user->update(['blocked' => true]);
-                $user->save();
-
-                throw new ERPException(__('messages.too_many_attempts'));
-            }
-
-            $otp->increment('attempts');
-
             // Gerar com hash depois
             $otp->code       = random_int(10000, 99999);
             $otp->expires_at = Carbon::now()->addMinutes(15);
