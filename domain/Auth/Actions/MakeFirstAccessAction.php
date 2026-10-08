@@ -1,0 +1,53 @@
+<?php
+
+namespace Base\Auth\Actions;
+
+use Base\Base\Enums\OtpType;
+use Base\Base\Mail\FirstAccessMail;
+use Base\Base\Mail\SendEmailService;
+use Base\Models\OTPCodes\OTPCodes;
+use Base\Models\User\User;
+use Carbon\Carbon;
+
+final readonly class MakeFirstAccessAction {
+
+    public function __construct(
+        protected User $model,
+        protected OTPCodes $otp,
+        protected SendEmailService $sendEmailService,
+    ) {}
+
+    public function handle(array $data): void
+    {
+        $user = $this->model->where('email', $data['email'])->first();
+        $otp  = $user->otpCodes()->whereIsFirstAccess()->first();
+
+        if($otp){
+            // Gerar com hash depois
+            $otp->code       = random_int(10000, 99999);
+            $otp->expires_at = Carbon::now()->addMinutes(15);
+            $otp->save();
+
+            $this->sendEmailService->send(
+                $user->email,
+                mail: new FirstAccessMail(
+                    code:           $otp->code,
+                    name:           $user->name,
+                    expires_at:     now()->addMinutes(15)
+                ),
+            );
+
+            return;
+        }
+
+        OTPCodes::create([
+            'user_id'       => $user->id,
+            'code'          => random_int(10000, 99999), // Gerar com hash depois
+            'expires_at'    => Carbon::now()->addMinutes(15),
+            'used_at'       => NULL,
+            'type'          => OtpType::FIRST_ACCESS,
+            'attempts'      => 0,
+        ]);
+
+    }
+}

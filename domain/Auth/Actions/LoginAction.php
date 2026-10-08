@@ -1,17 +1,25 @@
 <?php
 
-namespace Base\Models\Auth\Actions;
+namespace Base\Auth\Actions;
 
+use Base\Base\Exceptions\ERPException;
 use Base\Models\User\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-final readonly class RegisterAction {
+final readonly class LoginAction {
 
     public function __construct(protected User $model) {}
 
     public function handle(array $data): User
     {
-        $user = $this->model->create($data);
+        $email    = $data['email'];
+        $password = $data['password'];
+
+        $user = User::where('email', $email)->first();
+
+        throw_if(!$user || !Hash::check($password, $user->password), new ERPException(__('messages.invalid_login')));
+        throw_if(!$user->verify_at, new ERPException(__('messages.without_access')));
 
         Auth::login($user);
 
