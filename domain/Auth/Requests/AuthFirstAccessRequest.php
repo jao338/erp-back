@@ -17,7 +17,6 @@ class AuthFirstAccessRequest extends FormRequest
                 'required',
                 'email',
                 'exists:user,email',
-                new VerifyIFFirstAccessRule()
             ],
         ];
     }
