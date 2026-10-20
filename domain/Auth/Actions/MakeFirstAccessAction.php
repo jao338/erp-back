@@ -3,6 +3,7 @@
 namespace Base\Auth\Actions;
 
 use Base\Base\Enums\OtpType;
+use Base\Base\Exceptions\ERPException;
 use Base\Base\Mail\FirstAccessMail;
 use Base\Base\Mail\SendEmailService;
 use Base\Models\OTPCodes\OTPCodes;
@@ -20,6 +21,12 @@ final readonly class MakeFirstAccessAction {
     public function handle(array $data): void
     {
         $user = $this->model->where('email', $data['email'])->first();
+
+        throw_if(
+            $user && $user->verify_at,
+            new ERPException(__('messages.user_verified'), 409),
+        );
+
         $otp  = $user->otpCodes()->whereIsFirstAccess()->first();
 
         if($otp){

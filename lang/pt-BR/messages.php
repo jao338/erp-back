@@ -40,7 +40,7 @@ return [
     'yours_sincerely'                          => 'Atenciosamente',
     'email_not_reply'                          => 'Este é um e-mail automático. Por favor, não responda a esta mensagem.',
     'all_rights_reserved'                      => 'Todos os direitos reservados.',
-    'user_verified'                            => 'Usuário verificado! Faça login novamente e aproveite!',
+    'user_verified'                            => 'Usuário já verificado! Faça login e aproveite!',
     'too_many_attempts'                        => 'Número máximo de tentativas excedido. Solicite um novo código',
     'code_not_found'                           => 'Código não encontrado!',
 ];

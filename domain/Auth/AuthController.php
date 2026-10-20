@@ -41,11 +41,15 @@ class AuthController extends Controller {
         return response()->noContent();
     }
 
-    public function firstAccess(AuthFirstAccessRequest $request, MakeFirstAccessAction $action): JsonResponse
-    {
+    public function firstAccess(
+        AuthFirstAccessRequest $request,
+        MakeFirstAccessAction $action,
+    ): JsonResponse {
         $action->handle($request->validated());
 
-        return response()->json(['message' => __('messages.code_sent_via_email')]);
+        return response()->json([
+            'message' => __('messages.code_sent_via_email'),
+        ]);
     }
 
     public function verifyCodeAccess(AuthVerifyCodeAccessRequest $request, VerifyCodeAccessAction $action): JsonResponse
