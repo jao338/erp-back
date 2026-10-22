@@ -13,6 +13,9 @@ services:
     restart: unless-stopped
     depends_on:
       - php
+      - mysql
+      - redis
+      - queue
     ports:
       - "80:80"
     volumes:
