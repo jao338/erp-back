@@ -19,9 +19,9 @@ final readonly class VerifyCodeAccessAction {
 
         $otp = $this->otp
             ->where('user_id', $user->id)
+            ->whereIsFirstAccess()
             ->whereIsNotUsed()
             ->where('expires_at', '>', now())
-            ->latest('expires_at')
             ->first();
 
         throw_if(
