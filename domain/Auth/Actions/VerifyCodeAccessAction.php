@@ -5,6 +5,7 @@ namespace Base\Auth\Actions;
 use Base\Base\Exceptions\ERPException;
 use Base\Models\OTPCodes\OTPCodes;
 use Base\Models\User\User;
+use Illuminate\Support\Facades\Hash;
 
 final readonly class VerifyCodeAccessAction {
 
@@ -31,7 +32,7 @@ final readonly class VerifyCodeAccessAction {
             throw new ERPException('messages.too_many_attempts');
         }
 
-        if((string) $otp->code !== (string) $data['code']){
+        if(!Hash::check((string) $data['code'], $otp->code)){
             $otp->increment('attempts');
 
             if($otp->attempts >= 5){

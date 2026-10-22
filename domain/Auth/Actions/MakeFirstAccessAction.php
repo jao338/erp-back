@@ -9,6 +9,7 @@ use Base\Base\Mail\SendEmailService;
 use Base\Models\OTPCodes\OTPCodes;
 use Base\Models\User\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 final readonly class MakeFirstAccessAction {
 
@@ -28,33 +29,32 @@ final readonly class MakeFirstAccessAction {
         );
 
         $otp  = $user->otpCodes()->whereIsFirstAccess()->first();
+        $plainCode = (string) random_int(10000, 99999);
+        $expiresInMinutes = 15;
+        $expiresAt = Carbon::now()->addMinutes($expiresInMinutes);
 
         if($otp){
-            // Gerar com hash depois
-            $otp->code       = random_int(10000, 99999);
-            $otp->expires_at = Carbon::now()->addMinutes(15);
+            $otp->code       = Hash::make($plainCode);
+            $otp->expires_at = $expiresAt;
             $otp->save();
-
-            $this->sendEmailService->send(
-                $user->email,
-                mail: new FirstAccessMail(
-                    code:           $otp->code,
-                    name:           $user->name,
-                    expires_at:     now()->addMinutes(15)
-                ),
-            );
-
-            return;
+        } else {
+            OTPCodes::create([
+                'user_id'       => $user->id,
+                'code'          => Hash::make($plainCode),
+                'expires_at'    => $expiresAt,
+                'used_at'       => NULL,
+                'type'          => OtpType::FIRST_ACCESS,
+                'attempts'      => 0,
+            ]);
         }
 
-        OTPCodes::create([
-            'user_id'       => $user->id,
-            'code'          => random_int(10000, 99999), // Gerar com hash depois
-            'expires_at'    => Carbon::now()->addMinutes(15),
-            'used_at'       => NULL,
-            'type'          => OtpType::FIRST_ACCESS,
-            'attempts'      => 0,
-        ]);
-
+        $this->sendEmailService->send(
+            $user->email,
+            mail: new FirstAccessMail(
+                code:       $plainCode,
+                name:       $user->name,
+                expires_at: (string) $expiresInMinutes,
+            ),
+        );
     }
 }
