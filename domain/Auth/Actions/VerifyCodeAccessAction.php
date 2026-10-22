@@ -24,25 +24,32 @@ final readonly class VerifyCodeAccessAction {
             ->latest('expires_at')
             ->first();
 
-        if(!$otp){
-            throw new ERPException('messages.code_not_found');
-        }
+        throw_if(
+            !$otp,
+            new ERPException(__('messages.code_not_found'), 409),
+        );
 
-        if($otp->attempts >= 5){
-            throw new ERPException('messages.too_many_attempts');
-        }
-
-        if(!Hash::check((string) $data['code'], $otp->code)){
+        if ($otp->attempts >= 5) {
             $otp->increment('attempts');
 
-            if($otp->attempts >= 5){
-                throw new ERPException('messages.too_many_attempts');
-            }
+            $user->update(['blocked' => TRUE]);
 
-            throw new ERPException('messages.code_not_found');
+            throw new ERPException(
+                __('messages.too_many_attempts'),
+                409,
+            );
+        }
+
+        if (!Hash::check((string) $data['code'], $otp->code)) {
+            $otp->increment('attempts');
+
+            throw new ERPException(
+                __('messages.code_not_match'),
+                409,
+            );
         }
 
         $user->update(['verify_at' => now()]);
-        $otp->update(['used_at'   => now()]);
+        $otp->update(['used_at'    => now()]);
     }
 }
