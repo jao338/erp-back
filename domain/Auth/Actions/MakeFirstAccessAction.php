@@ -36,6 +36,8 @@ final readonly class MakeFirstAccessAction {
         if($otp){
             $otp->code       = Hash::make($plainCode);
             $otp->expires_at = $expiresAt;
+            $otp->used_at    = NULL;
+            $otp->attempts   = 0;
             $otp->save();
         } else {
             OTPCodes::create([
