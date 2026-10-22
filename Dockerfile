@@ -4,13 +4,14 @@ RUN apk add --no-cache \
     icu-dev \
     oniguruma-dev \
     libzip-dev \
-    freetype-dev \
-    libjpeg-turbo-dev \
     libpng-dev \
+    libjpeg-turbo-dev \
+    freetype-dev \
     zip \
     unzip \
     git \
-    curl
+    curl \
+    $PHPIZE_DEPS
 
 RUN docker-php-ext-configure gd \
     --with-freetype \
@@ -21,9 +22,12 @@ RUN docker-php-ext-install \
     pdo_mysql \
     intl \
     zip \
+    opcache \
     gd \
-    pcntl \
-    opcache
+    pcntl
+
+RUN pecl list | grep -q '^redis ' || pecl install redis \
+    && docker-php-ext-enable redis
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 

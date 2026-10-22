@@ -19,7 +19,8 @@ class UserSeeder extends Seeder
             [
                 'name'           => 'admin',
                 'password'       => env('DEFAULT_PASSWORD'),
-                'remember_token' => null,
+//                'verify_at'    => now(),
+                'remember_token' => NULL,
             ]
         );
     }

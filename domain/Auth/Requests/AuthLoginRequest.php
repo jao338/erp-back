@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Models\Auth\Requests;
+namespace Base\Auth\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -9,7 +9,7 @@ class AuthLoginRequest extends FormRequest {
     public function rules(): array
     {
         return [
-            'email'    => ['required', 'email'],
+            'email'    => ['required', 'email', 'exists:user,email'],
             'password' => ['required', 'string',  'min:8'],
         ];
     }

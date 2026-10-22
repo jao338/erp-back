@@ -1,7 +1,8 @@
 <?php
 
-namespace Base\Models\Auth\Requests;
+namespace Base\Auth\Requests;
 
+use App\Rules\VerifyIFFirstAccessRule;
 use Base\Base\Rules\PasswordRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -11,24 +12,24 @@ class AuthRegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'email' => [
+                'bail',
+                'required',
+                'email',
+            ],
             'name' => [
                 'required',
-                'string'
-            ],
-            'email' => [
-                'required',
-                'email'
+                'string',
+                'min:2'
             ],
             'password' => [
                 'required',
                 'string',
-                'min:8',
                 new PasswordRule($this->input('password')),
             ],
             'confirm_password' => [
                 'required',
                 'string',
-                'min:8',
                 'same:password',
             ],
         ];
