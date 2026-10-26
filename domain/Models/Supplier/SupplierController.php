@@ -13,7 +13,7 @@ use Base\Base\Docs\Schemas\Errors\UnauthorizedResponseSchema;
 use Base\Base\Docs\Schemas\Errors\ValidationErrorResponseSchema;
 use Base\Base\Docs\Schemas\Supplier\SupplierCollectionResponseSchema;
 use Base\Base\Docs\Schemas\Supplier\SupplierLookupResponseSchema;
-use Base\Base\Docs\Schemas\Supplier\SupplierResponseSchema;
+use Base\Base\Docs\Schemas\Supplier\SupplierShowResponseSchema;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use OpenApi\Attributes as OA;
@@ -47,15 +47,15 @@ class SupplierController extends Controller {
     }
 
     #[OA\Get(
-        path: '/api/suppliers/{supplier}',
+        path: '/api/suppliers/{uuid}',
         summary: 'Retorna um fornecedor',
         tags: ['Fornecedores'],
         security: [['sanctum' => []]],
         parameters: [
-            new OA\Parameter(name: 'supplier', in: 'path', description: 'UUID do fornecedor', required: true, schema: new OA\Schema(type: 'string', format: 'uuid')),
+            new OA\Parameter(name: 'uuid', in: 'path', description: 'UUID do fornecedor', required: true, schema: new OA\Schema(type: 'string', format: 'uuid')),
         ],
         responses: [
-            new OA\Response(response: 200, description: 'Fornecedor retornado com sucesso', content: new OA\JsonContent(ref: SupplierResponseSchema::class)),
+            new OA\Response(response: 200, description: 'Fornecedor retornado com sucesso', content: new OA\JsonContent(ref: SupplierShowResponseSchema::class)),
             new OA\Response(response: 401, description: 'Usuário não autenticado', content: new OA\JsonContent(ref: UnauthorizedResponseSchema::class)),
             new OA\Response(response: 404, description: 'Fornecedor não encontrado', content: new OA\JsonContent(ref: NotFoundResponseSchema::class)),
         ]

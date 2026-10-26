@@ -15,7 +15,7 @@ use Base\Base\Docs\Schemas\Errors\UnauthorizedResponseSchema;
 use Base\Base\Docs\Schemas\Errors\ValidationErrorResponseSchema;
 use Base\Base\Docs\Schemas\Shopping\ShoppingCollectionResponseSchema;
 use Base\Base\Docs\Schemas\Shopping\ShoppingRequestSchema;
-use Base\Base\Docs\Schemas\Shopping\ShoppingResponseSchema;
+use Base\Base\Docs\Schemas\Shopping\ShoppingShowResponseSchema;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 use OpenApi\Attributes as OA;
@@ -56,7 +56,7 @@ class ShoppingController extends Controller {
             new OA\Parameter(name: 'uuid', in: 'path', description: 'UUID da compra', required: true, schema: new OA\Schema(type: 'string', format: 'uuid')),
         ],
         responses: [
-            new OA\Response(response: 200, description: 'Compra retornada com sucesso', content: new OA\JsonContent(ref: ShoppingResponseSchema::class)),
+            new OA\Response(response: 200, description: 'Compra retornada com sucesso', content: new OA\JsonContent(ref: ShoppingShowResponseSchema::class)),
             new OA\Response(response: 401, description: 'Usuário não autenticado', content: new OA\JsonContent(ref: UnauthorizedResponseSchema::class)),
             new OA\Response(response: 404, description: 'Compra não encontrada', content: new OA\JsonContent(ref: NotFoundResponseSchema::class)),
         ]
@@ -76,7 +76,7 @@ class ShoppingController extends Controller {
             content: new OA\JsonContent(ref: ShoppingRequestSchema::class)
         ),
         responses: [
-            new OA\Response(response: 200, description: 'Compra registrada com sucesso', content: new OA\JsonContent(ref: ShoppingResponseSchema::class)),
+            new OA\Response(response: 200, description: 'Compra registrada com sucesso', content: new OA\JsonContent(ref: ShoppingShowResponseSchema::class)),
             new OA\Response(response: 401, description: 'Usuário não autenticado', content: new OA\JsonContent(ref: UnauthorizedResponseSchema::class)),
             new OA\Response(response: 422, description: 'Dados da compra inválidos', content: new OA\JsonContent(ref: ValidationErrorResponseSchema::class)),
         ]

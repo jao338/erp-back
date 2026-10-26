@@ -10,7 +10,7 @@ use Base\Models\Client\Requests\ClientFilterRequest;
 use Base\Models\Client\Resources\ClientResource;
 use Base\Base\Docs\Schemas\Client\ClientCollectionResponseSchema;
 use Base\Base\Docs\Schemas\Client\ClientLookupResponseSchema;
-use Base\Base\Docs\Schemas\Client\ClientResponseSchema;
+use Base\Base\Docs\Schemas\Client\ClientShowResponseSchema;
 use Base\Base\Docs\Schemas\Errors\NotFoundResponseSchema;
 use Base\Base\Docs\Schemas\Errors\UnauthorizedResponseSchema;
 use Base\Base\Docs\Schemas\Errors\ValidationErrorResponseSchema;
@@ -55,7 +55,7 @@ class ClientController extends Controller {
             new OA\Parameter(name: 'uuid', in: 'path', description: 'UUID do cliente', required: true, schema: new OA\Schema(type: 'string', format: 'uuid')),
         ],
         responses: [
-            new OA\Response(response: 200, description: 'Cliente retornado com sucesso', content: new OA\JsonContent(ref: ClientResponseSchema::class)),
+            new OA\Response(response: 200, description: 'Cliente retornado com sucesso', content: new OA\JsonContent(ref: ClientShowResponseSchema::class)),
             new OA\Response(response: 401, description: 'Usuário não autenticado', content: new OA\JsonContent(ref: UnauthorizedResponseSchema::class)),
             new OA\Response(response: 404, description: 'Cliente não encontrado', content: new OA\JsonContent(ref: NotFoundResponseSchema::class)),
         ]

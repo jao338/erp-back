@@ -16,7 +16,7 @@ use Base\Base\Docs\Schemas\Errors\UnauthorizedResponseSchema;
 use Base\Base\Docs\Schemas\Errors\ValidationErrorResponseSchema;
 use Base\Base\Docs\Schemas\Sale\SaleCollectionResponseSchema;
 use Base\Base\Docs\Schemas\Sale\SaleRequestSchema;
-use Base\Base\Docs\Schemas\Sale\SaleResponseSchema;
+use Base\Base\Docs\Schemas\Sale\SaleShowResponseSchema;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 use OpenApi\Attributes as OA;
@@ -59,7 +59,7 @@ class SaleController extends Controller {
             new OA\Parameter(name: 'uuid', in: 'path', description: 'UUID da venda', required: true, schema: new OA\Schema(type: 'string', format: 'uuid')),
         ],
         responses: [
-            new OA\Response(response: 200, description: 'Venda retornada com sucesso', content: new OA\JsonContent(ref: SaleResponseSchema::class)),
+            new OA\Response(response: 200, description: 'Venda retornada com sucesso', content: new OA\JsonContent(ref: SaleShowResponseSchema::class)),
             new OA\Response(response: 401, description: 'Usuário não autenticado', content: new OA\JsonContent(ref: UnauthorizedResponseSchema::class)),
             new OA\Response(response: 404, description: 'Venda não encontrada', content: new OA\JsonContent(ref: NotFoundResponseSchema::class)),
         ]
@@ -79,7 +79,7 @@ class SaleController extends Controller {
             content: new OA\JsonContent(ref: SaleRequestSchema::class)
         ),
         responses: [
-            new OA\Response(response: 200, description: 'Venda registrada com sucesso', content: new OA\JsonContent(ref: SaleResponseSchema::class)),
+            new OA\Response(response: 200, description: 'Venda registrada com sucesso', content: new OA\JsonContent(ref: SaleShowResponseSchema::class)),
             new OA\Response(response: 401, description: 'Usuário não autenticado', content: new OA\JsonContent(ref: UnauthorizedResponseSchema::class)),
             new OA\Response(
                 response: 422,

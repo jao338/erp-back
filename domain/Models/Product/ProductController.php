@@ -16,7 +16,7 @@ use Base\Base\Docs\Schemas\Errors\UnauthorizedResponseSchema;
 use Base\Base\Docs\Schemas\Errors\ValidationErrorResponseSchema;
 use Base\Base\Docs\Schemas\Product\ProductCollectionResponseSchema;
 use Base\Base\Docs\Schemas\Product\ProductRequestSchema;
-use Base\Base\Docs\Schemas\Product\ProductResponseSchema;
+use Base\Base\Docs\Schemas\Product\ProductShowResponseSchema;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 use OpenApi\Attributes as OA;
@@ -60,7 +60,7 @@ class ProductController extends Controller {
             new OA\Parameter(name: 'uuid', in: 'path', description: 'UUID do produto', required: true, schema: new OA\Schema(type: 'string', format: 'uuid')),
         ],
         responses: [
-            new OA\Response(response: 200, description: 'Produto retornado com sucesso', content: new OA\JsonContent(ref: ProductResponseSchema::class)),
+            new OA\Response(response: 200, description: 'Produto retornado com sucesso', content: new OA\JsonContent(ref: ProductShowResponseSchema::class)),
             new OA\Response(response: 401, description: 'Usuário não autenticado', content: new OA\JsonContent(ref: UnauthorizedResponseSchema::class)),
             new OA\Response(response: 404, description: 'Produto não encontrado', content: new OA\JsonContent(ref: NotFoundResponseSchema::class)),
         ]
@@ -77,7 +77,7 @@ class ProductController extends Controller {
         security: [['sanctum' => []]],
         requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: ProductRequestSchema::class)),
         responses: [
-            new OA\Response(response: 200, description: 'Produto criado com sucesso', content: new OA\JsonContent(ref: ProductResponseSchema::class)),
+            new OA\Response(response: 200, description: 'Produto criado com sucesso', content: new OA\JsonContent(ref: ProductShowResponseSchema::class)),
             new OA\Response(response: 401, description: 'Usuário não autenticado', content: new OA\JsonContent(ref: UnauthorizedResponseSchema::class)),
             new OA\Response(response: 422, description: 'Erro de validação', content: new OA\JsonContent(ref: ValidationErrorResponseSchema::class)),
         ]
@@ -90,22 +90,6 @@ class ProductController extends Controller {
     #[OA\Put(
         path: '/api/products/{uuid}',
         summary: 'Atualiza um produto',
-        tags: ['Produtos'],
-        security: [['sanctum' => []]],
-        parameters: [
-            new OA\Parameter(name: 'uuid', in: 'path', description: 'UUID do produto', required: true, schema: new OA\Schema(type: 'string', format: 'uuid')),
-        ],
-        requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: ProductRequestSchema::class)),
-        responses: [
-            new OA\Response(response: 204, description: ''),
-            new OA\Response(response: 401, description: 'Usuário não autenticado', content: new OA\JsonContent(ref: UnauthorizedResponseSchema::class)),
-            new OA\Response(response: 404, description: 'Produto não encontrado', content: new OA\JsonContent(ref: NotFoundResponseSchema::class)),
-            new OA\Response(response: 422, description: 'Erro de validação', content: new OA\JsonContent(ref: ValidationErrorResponseSchema::class)),
-        ]
-    )]
-    #[OA\Patch(
-        path: '/api/products/{uuid}',
-        summary: 'Atualiza parcialmente um produto',
         tags: ['Produtos'],
         security: [['sanctum' => []]],
         parameters: [
