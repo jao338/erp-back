@@ -20,7 +20,15 @@ class AuthLoginResponseSchema
     public string $nome;
 
     #[OA\Property(
-        description: 'Token Bearer utilizado para autenticação. Pode ser nulo quando a autenticação ocorre via sessão.',
+        description: 'Identificador único do usuário',
+        type: 'string',
+        format: 'uuid',
+        example: '550e8400-e29b-41d4-a716-446655440000'
+    )]
+    public string $uuid;
+
+    #[OA\Property(
+        description: 'Token Sanctum para autenticação. Pode ser nulo quando a autenticação ocorre via sessão.',
         nullable: true,
         example: '1|xKgM4....'
     )]
