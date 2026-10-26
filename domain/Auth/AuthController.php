@@ -99,7 +99,7 @@ class AuthController extends Controller {
         responses: [
             new OA\Response(
                 response: 204,
-                description: 'Logout realizado com sucesso'
+                description: ''
             ),
             new OA\Response(
                 response: 401,
