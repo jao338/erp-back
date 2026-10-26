@@ -16,7 +16,16 @@ class SaleItem extends Model {
     public $incrementing    = true;
     public $timestamps      = true;
 
-    protected $casts  = [];
+    protected $casts  = [
+        'id'            => 'integer',
+        'sale_id'       => 'integer',
+        'product_id'    => 'integer',
+        'amount'        => 'float',
+        'unit_price'    => 'float',
+        'unit_cost'     => 'float',
+        'subtotal'      => 'float',
+        'profit'        => 'float',
+    ];
 
     protected $fillable = [
         'uuid',

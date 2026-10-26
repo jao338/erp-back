@@ -17,7 +17,11 @@ class ShoppingItem extends Model {
     public $incrementing    = true;
     public $timestamps      = true;
 
-    protected $casts  = [];
+
+    protected $casts = [
+        'unit_price' => 'float',
+        'subtotal'   => 'float',
+    ];
 
     protected $fillable = [
         'uuid',
