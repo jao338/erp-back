@@ -22,7 +22,7 @@ class ShoppingRequestSchema
             properties: [
                 new OA\Property(property: 'produto_uuid', description: 'UUID do produto', type: 'string', format: 'uuid', example: '550e8400-e29b-41d4-a716-446655440000'),
                 new OA\Property(property: 'quantidade', description: 'Quantidade comprada', type: 'integer', minimum: 1, example: 10),
-                new OA\Property(property: 'preco_unitario', description: 'Preço unitário de compra', type: 'number', format: 'float', exclusiveMinimum: true, example: 12.5),
+                new OA\Property(property: 'preco_unitario', description: 'Preço unitário de compra', type: 'number', format: 'float', minimum: 0, exclusiveMinimum: true, example: 12.5),
             ]
         )
     )]
