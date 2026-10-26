@@ -13,6 +13,13 @@ use OpenApi\Attributes as OA;
     url: L5_SWAGGER_CONST_HOST,
     description: 'Servidor da API'
 )]
+#[OA\SecurityScheme(
+    securityScheme: 'sanctum',
+    type: 'http',
+    scheme: 'bearer',
+    bearerFormat: 'Sanctum token',
+    description: 'Token Sanctum enviado no cabeçalho Authorization.'
+)]
 
 #[OA\Tag(
     name: 'Autenticação',
