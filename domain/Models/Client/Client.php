@@ -1,8 +1,8 @@
 <?php
 
-namespace Base\Models\Client;
+namespace ERP\Models\Client;
 
-use Base\Models\Sale\Sale;
+use ERP\Models\Sale\Sale;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

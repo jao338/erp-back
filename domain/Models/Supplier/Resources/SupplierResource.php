@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Models\Supplier\Resources;
+namespace ERP\Models\Supplier\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

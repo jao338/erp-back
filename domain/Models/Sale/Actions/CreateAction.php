@@ -1,12 +1,12 @@
 <?php
 
-namespace Base\Models\Sale\Actions;
+namespace ERP\Models\Sale\Actions;
 
-use Base\Base\Exceptions\ERPException;
-use Base\Models\Client\Client;
-use Base\Models\Product\Product;
-use Base\Models\Sale\Sale;
-use Base\Models\SaleItem\SaleItem;
+use ERP\Exceptions\ERPException;
+use ERP\Models\Client\Client;
+use ERP\Models\Product\Product;
+use ERP\Models\Sale\Sale;
+use ERP\Models\SaleItem\SaleItem;
 use Illuminate\Support\Facades\DB;
 final readonly class CreateAction
 {

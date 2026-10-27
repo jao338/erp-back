@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Models\Product\Requests;
+namespace ERP\Models\Product\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;

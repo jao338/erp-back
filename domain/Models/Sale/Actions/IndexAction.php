@@ -1,8 +1,8 @@
 <?php
 
-namespace Base\Models\Sale\Actions;
+namespace ERP\Models\Sale\Actions;
 
-use Base\Models\Sale\Sale;
+use ERP\Models\Sale\Sale;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 final readonly class IndexAction {

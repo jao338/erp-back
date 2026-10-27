@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Base\Models\Supplier\Supplier;
+use ERP\Models\Supplier\Supplier;
 use Illuminate\Database\Seeder;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;

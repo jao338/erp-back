@@ -1,22 +1,22 @@
 <?php
 
-namespace Base\Models\Product;
+namespace ERP\Models\Product;
 
 use App\Http\Controllers\Controller;
-use Base\Models\Product\Actions\CreateAction;
-use Base\Models\Product\Actions\DestroyAction;
-use Base\Models\Product\Actions\IndexAction;
-use Base\Models\Product\Actions\ShowAction;
-use Base\Models\Product\Actions\UpdateAction;
-use Base\Models\Product\Requests\ProductFilterRequest;
-use Base\Models\Product\Requests\ProductRequest;
-use Base\Models\Product\Resources\ProductResource;
-use Base\Base\Docs\Schemas\Errors\NotFoundResponseSchema;
-use Base\Base\Docs\Schemas\Errors\UnauthorizedResponseSchema;
-use Base\Base\Docs\Schemas\Errors\ValidationErrorResponseSchema;
-use Base\Base\Docs\Schemas\Product\ProductCollectionResponseSchema;
-use Base\Base\Docs\Schemas\Product\ProductRequestSchema;
-use Base\Base\Docs\Schemas\Product\ProductShowResponseSchema;
+use ERP\Models\Product\Actions\CreateAction;
+use ERP\Models\Product\Actions\DestroyAction;
+use ERP\Models\Product\Actions\IndexAction;
+use ERP\Models\Product\Actions\ShowAction;
+use ERP\Models\Product\Actions\UpdateAction;
+use ERP\Models\Product\Requests\ProductFilterRequest;
+use ERP\Models\Product\Requests\ProductRequest;
+use ERP\Models\Product\Resources\ProductResource;
+use ERP\Docs\Schemas\Errors\NotFoundResponseSchema;
+use ERP\Docs\Schemas\Errors\UnauthorizedResponseSchema;
+use ERP\Docs\Schemas\Errors\ValidationErrorResponseSchema;
+use ERP\Docs\Schemas\Product\ProductCollectionResponseSchema;
+use ERP\Docs\Schemas\Product\ProductRequestSchema;
+use ERP\Docs\Schemas\Product\ProductShowResponseSchema;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 use OpenApi\Attributes as OA;

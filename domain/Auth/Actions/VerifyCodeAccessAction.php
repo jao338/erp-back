@@ -1,10 +1,10 @@
 <?php
 
-namespace Base\Auth\Actions;
+namespace ERP\Auth\Actions;
 
-use Base\Base\Exceptions\ERPException;
-use Base\Models\OTPCodes\OTPCodes;
-use Base\Models\User\User;
+use ERP\Exceptions\ERPException;
+use ERP\Models\OTPCodes\OTPCodes;
+use ERP\Models\User\User;
 use Illuminate\Support\Facades\Hash;
 
 final readonly class VerifyCodeAccessAction {

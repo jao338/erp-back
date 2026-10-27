@@ -1,22 +1,22 @@
 <?php
 
-namespace Base\Models\Sale;
+namespace ERP\Models\Sale;
 
 use App\Http\Controllers\Controller;
-use Base\Models\Sale\Actions\CancelAction;
-use Base\Models\Sale\Actions\CreateAction;
-use Base\Models\Sale\Actions\IndexAction;
-use Base\Models\Sale\Actions\ShowAction;
-use Base\Models\Sale\Requests\SaleFilterRequest;
-use Base\Models\Sale\Requests\SaleRequest;
-use Base\Models\Sale\Resources\SaleResource;
-use Base\Base\Docs\Schemas\Errors\ERPErrorResponseSchema;
-use Base\Base\Docs\Schemas\Errors\NotFoundResponseSchema;
-use Base\Base\Docs\Schemas\Errors\UnauthorizedResponseSchema;
-use Base\Base\Docs\Schemas\Errors\ValidationErrorResponseSchema;
-use Base\Base\Docs\Schemas\Sale\SaleCollectionResponseSchema;
-use Base\Base\Docs\Schemas\Sale\SaleRequestSchema;
-use Base\Base\Docs\Schemas\Sale\SaleShowResponseSchema;
+use ERP\Models\Sale\Actions\CancelAction;
+use ERP\Models\Sale\Actions\CreateAction;
+use ERP\Models\Sale\Actions\IndexAction;
+use ERP\Models\Sale\Actions\ShowAction;
+use ERP\Models\Sale\Requests\SaleFilterRequest;
+use ERP\Models\Sale\Requests\SaleRequest;
+use ERP\Models\Sale\Resources\SaleResource;
+use ERP\Docs\Schemas\Errors\ERPErrorResponseSchema;
+use ERP\Docs\Schemas\Errors\NotFoundResponseSchema;
+use ERP\Docs\Schemas\Errors\UnauthorizedResponseSchema;
+use ERP\Docs\Schemas\Errors\ValidationErrorResponseSchema;
+use ERP\Docs\Schemas\Sale\SaleCollectionResponseSchema;
+use ERP\Docs\Schemas\Sale\SaleRequestSchema;
+use ERP\Docs\Schemas\Sale\SaleShowResponseSchema;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 use OpenApi\Attributes as OA;

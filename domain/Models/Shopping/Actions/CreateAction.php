@@ -1,11 +1,11 @@
 <?php
 
-namespace Base\Models\Shopping\Actions;
+namespace ERP\Models\Shopping\Actions;
 
-use Base\Models\Product\Product;
-use Base\Models\Shopping\Shopping;
-use Base\Models\ShoppingItem\ShoppingItem;
-use Base\Models\Supplier\Supplier;
+use ERP\Models\Product\Product;
+use ERP\Models\Shopping\Shopping;
+use ERP\Models\ShoppingItem\ShoppingItem;
+use ERP\Models\Supplier\Supplier;
 use Illuminate\Support\Facades\DB;
 
 final readonly class CreateAction

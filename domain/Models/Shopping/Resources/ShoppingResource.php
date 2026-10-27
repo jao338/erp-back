@@ -1,8 +1,8 @@
 <?php
 
-namespace Base\Models\Shopping\Resources;
+namespace ERP\Models\Shopping\Resources;
 
-use Base\Models\ShoppingItem\Resources\ShoppingItemResource;
+use ERP\Models\ShoppingItem\Resources\ShoppingItemResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ShoppingResource extends JsonResource {

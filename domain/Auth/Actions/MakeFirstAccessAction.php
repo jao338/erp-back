@@ -1,13 +1,13 @@
 <?php
 
-namespace Base\Auth\Actions;
+namespace ERP\Auth\Actions;
 
-use Base\Base\Enums\OtpType;
-use Base\Base\Exceptions\ERPException;
-use Base\Base\Mail\FirstAccessMail;
-use Base\Base\Mail\SendEmailService;
-use Base\Models\OTPCodes\OTPCodes;
-use Base\Models\User\User;
+use ERP\Enums\OtpType;
+use ERP\Exceptions\ERPException;
+use ERP\Mail\FirstAccessMail;
+use ERP\Mail\SendEmailService;
+use ERP\Models\OTPCodes\OTPCodes;
+use ERP\Models\User\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 

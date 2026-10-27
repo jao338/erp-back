@@ -1,9 +1,9 @@
 <?php
 
-namespace Base\Auth\Actions;
+namespace ERP\Auth\Actions;
 
-use Base\Base\Exceptions\ERPException;
-use Base\Models\User\User;
+use ERP\Exceptions\ERPException;
+use ERP\Models\User\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 

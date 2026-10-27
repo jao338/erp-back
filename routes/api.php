@@ -1,11 +1,11 @@
 <?php
 
-use Base\Auth\AuthController;
-use Base\Models\Product\ProductController;
-use Base\Models\Sale\SaleController;
-use Base\Models\Shopping\ShoppingController;
-use Base\Models\Supplier\SupplierController;
-use Base\Models\Client\ClientController;
+use ERP\Auth\AuthController;
+use ERP\Models\Product\ProductController;
+use ERP\Models\Sale\SaleController;
+use ERP\Models\Shopping\ShoppingController;
+use ERP\Models\Supplier\SupplierController;
+use ERP\Models\Client\ClientController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([

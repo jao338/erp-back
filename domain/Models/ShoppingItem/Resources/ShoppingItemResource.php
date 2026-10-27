@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Models\ShoppingItem\Resources;
+namespace ERP\Models\ShoppingItem\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

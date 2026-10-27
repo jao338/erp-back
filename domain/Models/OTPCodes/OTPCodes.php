@@ -1,9 +1,9 @@
 <?php
 
-namespace Base\Models\OTPCodes;
+namespace ERP\Models\OTPCodes;
 
-use Base\Base\Enums\OtpType;
-use Base\Models\User\User;
+use ERP\Enums\OtpType;
+use ERP\Models\User\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

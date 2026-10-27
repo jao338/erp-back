@@ -1,9 +1,9 @@
 <?php
 
-namespace Base\Models\SaleItem;
+namespace ERP\Models\SaleItem;
 
-use Base\Models\Product\Product;
-use Base\Models\Sale\Sale;
+use ERP\Models\Product\Product;
+use ERP\Models\Sale\Sale;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Base\Auth\Actions;
+namespace ERP\Auth\Actions;
 
-use Base\Models\User\User;
+use ERP\Models\User\User;
 
 final readonly class RegisterAction {
 

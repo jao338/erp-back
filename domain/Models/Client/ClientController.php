@@ -1,19 +1,19 @@
 <?php
 
-namespace Base\Models\Client;
+namespace ERP\Models\Client;
 
 use App\Http\Controllers\Controller;
-use Base\Models\Client\Actions\IndexAction;
-use Base\Models\Client\Actions\ShowAction;
-use Base\Models\Client\Actions\LookupAction;
-use Base\Models\Client\Requests\ClientFilterRequest;
-use Base\Models\Client\Resources\ClientResource;
-use Base\Base\Docs\Schemas\Client\ClientCollectionResponseSchema;
-use Base\Base\Docs\Schemas\Client\ClientLookupResponseSchema;
-use Base\Base\Docs\Schemas\Client\ClientShowResponseSchema;
-use Base\Base\Docs\Schemas\Errors\NotFoundResponseSchema;
-use Base\Base\Docs\Schemas\Errors\UnauthorizedResponseSchema;
-use Base\Base\Docs\Schemas\Errors\ValidationErrorResponseSchema;
+use ERP\Models\Client\Actions\IndexAction;
+use ERP\Models\Client\Actions\ShowAction;
+use ERP\Models\Client\Actions\LookupAction;
+use ERP\Models\Client\Requests\ClientFilterRequest;
+use ERP\Models\Client\Resources\ClientResource;
+use ERP\Docs\Schemas\Client\ClientCollectionResponseSchema;
+use ERP\Docs\Schemas\Client\ClientLookupResponseSchema;
+use ERP\Docs\Schemas\Client\ClientShowResponseSchema;
+use ERP\Docs\Schemas\Errors\NotFoundResponseSchema;
+use ERP\Docs\Schemas\Errors\UnauthorizedResponseSchema;
+use ERP\Docs\Schemas\Errors\ValidationErrorResponseSchema;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\JsonResponse;
 use OpenApi\Attributes as OA;

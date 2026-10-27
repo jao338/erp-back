@@ -1,10 +1,10 @@
 <?php
 
-namespace Base\Models\Shopping;
+namespace ERP\Models\Shopping;
 
-use Base\Models\SaleItem\SaleItem;
-use Base\Models\ShoppingItem\ShoppingItem;
-use Base\Models\Supplier\Supplier;
+use ERP\Models\SaleItem\SaleItem;
+use ERP\Models\ShoppingItem\ShoppingItem;
+use ERP\Models\Supplier\Supplier;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;

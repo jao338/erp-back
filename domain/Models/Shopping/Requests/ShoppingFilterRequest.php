@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Models\Shopping\Requests;
+namespace ERP\Models\Shopping\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

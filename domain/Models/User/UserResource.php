@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Models\User;
+namespace ERP\Models\User;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

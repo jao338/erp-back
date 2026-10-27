@@ -1,8 +1,8 @@
 <?php
 
-namespace Base\Models\Sale\Resources;
+namespace ERP\Models\Sale\Resources;
 
-use Base\Models\SaleItem\Resources\SaleItemResource;
+use ERP\Models\SaleItem\Resources\SaleItemResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class SaleResource extends JsonResource {
