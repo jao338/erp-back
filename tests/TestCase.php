@@ -50,10 +50,6 @@ abstract class TestCase extends BaseTestCase {
         if ( ! file_exists(base_path('.env.testing'))) {
             $this->markTestSkipped('Arquivo .env.testing não encontrado. Os testes não serão executados.');
         }
-
-        if ( ! isBaseCRM(config("database.connections.sqlsrv.host"))) {
-            $this->markTestSkipped('***ATENÇÃO Os Testes devem ser rodados SOMENTE base local da CRM***');
-        }
     }
 
     /**
