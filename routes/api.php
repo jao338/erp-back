@@ -1,11 +1,11 @@
 <?php
 
 use Base\Auth\AuthController;
-use Base\Models\Client\ClientController;
 use Base\Models\Product\ProductController;
 use Base\Models\Sale\SaleController;
 use Base\Models\Shopping\ShoppingController;
 use Base\Models\Supplier\SupplierController;
+use Base\Models\Client\ClientController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -35,14 +35,6 @@ Route::group([
     Route::group([
         'middleware' => ['auth:sanctum'],
     ], function (): void {
-
-        Route::group([
-            'prefix' => 'lookups',
-        ], function (): void {
-            Route::get('suppliers', [SupplierController::class, 'lookup'])->name('lookups.suppliers');
-            Route::get('clients', [ClientController::class, 'lookup'])->name('lookups.clients');
-        });
-
         Route::get('me', [AuthController::class, 'me'])->name('me');
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
