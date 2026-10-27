@@ -1,9 +1,9 @@
 <?php
 
-namespace Base\Models\ShoppingItem;
+namespace ERP\Models\ShoppingItem;
 
-use Base\Models\Product\Product;
-use Base\Models\Shopping\Shopping;
+use ERP\Models\Product\Product;
+use ERP\Models\Shopping\Shopping;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;

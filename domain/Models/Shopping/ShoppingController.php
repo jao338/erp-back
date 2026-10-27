@@ -1,21 +1,21 @@
 <?php
 
-namespace Base\Models\Shopping;
+namespace ERP\Models\Shopping;
 
 use App\Http\Controllers\Controller;
-use Base\Models\Shopping\Actions\CancelAction;
-use Base\Models\Shopping\Actions\CreateAction;
-use Base\Models\Shopping\Actions\IndexAction;
-use Base\Models\Shopping\Actions\ShowAction;
-use Base\Models\Shopping\Requests\ShoppingFilterRequest;
-use Base\Models\Shopping\Requests\ShoppingRequest;
-use Base\Models\Shopping\Resources\ShoppingResource;
-use Base\Base\Docs\Schemas\Errors\NotFoundResponseSchema;
-use Base\Base\Docs\Schemas\Errors\UnauthorizedResponseSchema;
-use Base\Base\Docs\Schemas\Errors\ValidationErrorResponseSchema;
-use Base\Base\Docs\Schemas\Shopping\ShoppingCollectionResponseSchema;
-use Base\Base\Docs\Schemas\Shopping\ShoppingRequestSchema;
-use Base\Base\Docs\Schemas\Shopping\ShoppingShowResponseSchema;
+use ERP\Models\Shopping\Actions\CancelAction;
+use ERP\Models\Shopping\Actions\CreateAction;
+use ERP\Models\Shopping\Actions\IndexAction;
+use ERP\Models\Shopping\Actions\ShowAction;
+use ERP\Models\Shopping\Requests\ShoppingFilterRequest;
+use ERP\Models\Shopping\Requests\ShoppingRequest;
+use ERP\Models\Shopping\Resources\ShoppingResource;
+use ERP\Docs\Schemas\Errors\NotFoundResponseSchema;
+use ERP\Docs\Schemas\Errors\UnauthorizedResponseSchema;
+use ERP\Docs\Schemas\Errors\ValidationErrorResponseSchema;
+use ERP\Docs\Schemas\Shopping\ShoppingCollectionResponseSchema;
+use ERP\Docs\Schemas\Shopping\ShoppingRequestSchema;
+use ERP\Docs\Schemas\Shopping\ShoppingShowResponseSchema;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 use OpenApi\Attributes as OA;

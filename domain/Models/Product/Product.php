@@ -1,9 +1,9 @@
 <?php
 
-namespace Base\Models\Product;
+namespace ERP\Models\Product;
 
-use Base\Models\SaleItem\SaleItem;
-use Base\Models\ShoppingItem\ShoppingItem;
+use ERP\Models\SaleItem\SaleItem;
+use ERP\Models\ShoppingItem\ShoppingItem;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

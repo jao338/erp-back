@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Models\Client;
+namespace ERP\Models\Client;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 

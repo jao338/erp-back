@@ -1,19 +1,19 @@
 <?php
 
-namespace Base\Models\Supplier;
+namespace ERP\Models\Supplier;
 
 use App\Http\Controllers\Controller;
-use Base\Models\Supplier\Actions\IndexAction;
-use Base\Models\Supplier\Actions\ShowAction;
-use Base\Models\Supplier\Actions\LookupAction;
-use Base\Models\Supplier\Requests\SupplierFilterRequest;
-use Base\Models\Supplier\Resources\SupplierResource;
-use Base\Base\Docs\Schemas\Errors\NotFoundResponseSchema;
-use Base\Base\Docs\Schemas\Errors\UnauthorizedResponseSchema;
-use Base\Base\Docs\Schemas\Errors\ValidationErrorResponseSchema;
-use Base\Base\Docs\Schemas\Supplier\SupplierCollectionResponseSchema;
-use Base\Base\Docs\Schemas\Supplier\SupplierLookupResponseSchema;
-use Base\Base\Docs\Schemas\Supplier\SupplierShowResponseSchema;
+use ERP\Models\Supplier\Actions\IndexAction;
+use ERP\Models\Supplier\Actions\ShowAction;
+use ERP\Models\Supplier\Actions\LookupAction;
+use ERP\Models\Supplier\Requests\SupplierFilterRequest;
+use ERP\Models\Supplier\Resources\SupplierResource;
+use ERP\Docs\Schemas\Errors\NotFoundResponseSchema;
+use ERP\Docs\Schemas\Errors\UnauthorizedResponseSchema;
+use ERP\Docs\Schemas\Errors\ValidationErrorResponseSchema;
+use ERP\Docs\Schemas\Supplier\SupplierCollectionResponseSchema;
+use ERP\Docs\Schemas\Supplier\SupplierLookupResponseSchema;
+use ERP\Docs\Schemas\Supplier\SupplierShowResponseSchema;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use OpenApi\Attributes as OA;

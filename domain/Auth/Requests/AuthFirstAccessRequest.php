@@ -1,9 +1,9 @@
 <?php
 
-namespace Base\Auth\Requests;
+namespace ERP\Auth\Requests;
 
 use App\Rules\VerifyIFFirstAccessRule;
-use Base\Base\Rules\PasswordRule;
+use ERP\Rules\PasswordRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AuthFirstAccessRequest extends FormRequest

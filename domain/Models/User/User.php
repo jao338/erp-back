@@ -1,8 +1,8 @@
 <?php
 
-namespace Base\Models\User;
+namespace ERP\Models\User;
 
-use Base\Models\OTPCodes\OTPCodes;
+use ERP\Models\OTPCodes\OTPCodes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;

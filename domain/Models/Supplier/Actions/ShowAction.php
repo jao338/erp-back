@@ -1,8 +1,8 @@
 <?php
 
-namespace Base\Models\Supplier\Actions;
+namespace ERP\Models\Supplier\Actions;
 
-use Base\Models\Supplier\Supplier;
+use ERP\Models\Supplier\Supplier;
 
 final readonly class ShowAction {
 

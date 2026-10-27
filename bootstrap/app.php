@@ -1,7 +1,7 @@
 <?php
 
-use Base\Base\Exceptions\ERPException;
-use Base\Commands\UpdatePositionQueries;
+use ERP\Exceptions\ERPException;
+use ERP\Commands\UpdatePositionQueries;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;

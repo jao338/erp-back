@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Auth\Requests;
+namespace ERP\Auth\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

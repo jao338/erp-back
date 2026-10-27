@@ -31,10 +31,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "Base\\": "domain/"
+            "ERP\\": "domain/"
         },
         "files": [
-            "domain/Base/helpers.php"
+            "domain/helpers.php"
         ]
     },
     "autoload-dev": {

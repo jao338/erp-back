@@ -1,8 +1,8 @@
 <?php
 
-namespace Base\Models\Product\Actions;
+namespace ERP\Models\Product\Actions;
 
-use Base\Models\Product\Product;
+use ERP\Models\Product\Product;
 
 final readonly class ShowAction {
 

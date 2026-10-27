@@ -1,7 +1,7 @@
 <?php
 
-use Base\Models\Client\ClientController;
-use Base\Models\Supplier\SupplierController;
+use ERP\Models\Client\ClientController;
+use ERP\Models\Supplier\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([

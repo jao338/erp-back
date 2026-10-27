@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Base\Models\Sale\Actions;
+namespace ERP\Models\Sale\Actions;
 
-use Base\Models\Product\Product;
-use Base\Models\Sale\Sale;
+use ERP\Models\Product\Product;
+use ERP\Models\Sale\Sale;
 use Illuminate\Support\Facades\DB;
 use RuntimeException;
 

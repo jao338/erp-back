@@ -1,27 +1,27 @@
 <?php
 
-namespace Base\Auth;
+namespace ERP\Auth;
 
 use App\Http\Controllers\Controller;
-use Base\Auth\Actions\LoginAction;
-use Base\Auth\Actions\LogoutAction;
-use Base\Auth\Actions\MakeFirstAccessAction;
-use Base\Auth\Actions\RegisterAction;
-use Base\Auth\Actions\VerifyCodeAccessAction;
-use Base\Auth\Requests\AuthFirstAccessRequest;
-use Base\Auth\Requests\AuthLoginRequest;
-use Base\Auth\Requests\AuthRegisterRequest;
-use Base\Auth\Requests\AuthVerifyCodeAccessRequest;
-use Base\Base\Docs\Schemas\Auth\AuthFirstAccessRequestSchema;
-use Base\Base\Docs\Schemas\Auth\AuthLoginRequestSchema;
-use Base\Base\Docs\Schemas\Auth\AuthLoginResponseSchema;
-use Base\Base\Docs\Schemas\Auth\AuthMessageResponseSchema;
-use Base\Base\Docs\Schemas\Auth\AuthRegisterRequestSchema;
-use Base\Base\Docs\Schemas\Auth\AuthVerifyCodeAccessRequestSchema;
-use Base\Base\Docs\Schemas\Errors\ERPErrorResponseSchema;
-use Base\Base\Docs\Schemas\Errors\UnauthorizedResponseSchema;
-use Base\Base\Docs\Schemas\Errors\ValidationErrorResponseSchema;
-use Base\Models\User\UserResource;
+use ERP\Auth\Actions\LoginAction;
+use ERP\Auth\Actions\LogoutAction;
+use ERP\Auth\Actions\MakeFirstAccessAction;
+use ERP\Auth\Actions\RegisterAction;
+use ERP\Auth\Actions\VerifyCodeAccessAction;
+use ERP\Auth\Requests\AuthFirstAccessRequest;
+use ERP\Auth\Requests\AuthLoginRequest;
+use ERP\Auth\Requests\AuthRegisterRequest;
+use ERP\Auth\Requests\AuthVerifyCodeAccessRequest;
+use ERP\Docs\Schemas\Auth\AuthFirstAccessRequestSchema;
+use ERP\Docs\Schemas\Auth\AuthLoginRequestSchema;
+use ERP\Docs\Schemas\Auth\AuthLoginResponseSchema;
+use ERP\Docs\Schemas\Auth\AuthMessageResponseSchema;
+use ERP\Docs\Schemas\Auth\AuthRegisterRequestSchema;
+use ERP\Docs\Schemas\Auth\AuthVerifyCodeAccessRequestSchema;
+use ERP\Docs\Schemas\Errors\ERPErrorResponseSchema;
+use ERP\Docs\Schemas\Errors\UnauthorizedResponseSchema;
+use ERP\Docs\Schemas\Errors\ValidationErrorResponseSchema;
+use ERP\Models\User\UserResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;

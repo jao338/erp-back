@@ -1,8 +1,8 @@
 <?php
 
-namespace Base\Models\Supplier;
+namespace ERP\Models\Supplier;
 
-use Base\Models\Shopping\Shopping;
+use ERP\Models\Shopping\Shopping;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

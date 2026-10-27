@@ -1,9 +1,9 @@
 <?php
 
-namespace Base\Models\Sale;
+namespace ERP\Models\Sale;
 
-use Base\Models\Client\Client;
-use Base\Models\SaleItem\SaleItem;
+use ERP\Models\Client\Client;
+use ERP\Models\SaleItem\SaleItem;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
