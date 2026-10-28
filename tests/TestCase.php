@@ -2,30 +2,24 @@
 
 namespace Tests;
 
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Queue;
 use Mockery;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Notification;
 
-abstract class TestCase extends BaseTestCase {
-
-    use DatabaseTransactions;
+abstract class TestCase extends BaseTestCase
+{
+    use RefreshDatabase;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        Event::fake();
-
         Queue::fake();
 
         Notification::fake();
-
-        $this->validateTestEnvironment();
 
         $this->generateEncryptKey();
     }
@@ -35,25 +29,6 @@ abstract class TestCase extends BaseTestCase {
         Mockery::close();
 
         parent::tearDown();
-    }
-
-    private function validateTestEnvironment(): void
-    {
-        if (in_array(RefreshDatabase::class, class_uses_recursive(static::class))) {
-            $this->markTestSkipped('Este teste está utilizando a trait RefreshDatabase.');
-        }
-
-        if ( ! in_array(DatabaseTransactions::class, class_uses_recursive(static::class))) {
-            $this->markTestSkipped('Este teste não está utilizando a trait DatabaseTransactions.');
-        }
-
-        if ( ! file_exists(base_path('.env.testing'))) {
-            $this->markTestSkipped('Arquivo .env.testing não encontrado. Os testes não serão executados.');
-        }
-
-        if ( ! isBaseCRM(config("database.connections.sqlsrv.host"))) {
-            $this->markTestSkipped('***ATENÇÃO Os Testes devem ser rodados SOMENTE base local da CRM***');
-        }
     }
 
     /**
