@@ -14,6 +14,7 @@ final readonly class IndexAction {
 
         $name               = $data['nome'] ?? null;
         $cnpj               = $data['cnpj'] ?? null;
+        $cpf                = $data['cpf'] ?? null;
         $email              = $data['email'] ?? null;
         $telephone          = $data['telephone'] ?? null;
 
@@ -25,8 +26,9 @@ final readonly class IndexAction {
             ->with(['person'])
             ->when(isset($name), fn($query)         => $query->whereRelation('person', 'name', 'LIKE', "%$name%"))
             ->when(isset($cnpj), fn($query)         => $query->whereRelation('person', 'cnpj', 'LIKE', "%$cnpj%"))
+            ->when(isset($cpf), fn($query)          => $query->whereRelation('person', 'cpf', 'LIKE', "%$cpf%"))
             ->when(isset($email), fn($query)        => $query->whereRelation('person', 'email', 'LIKE', "%$email%"))
-            ->when(isset($telephone), fn($query)        => $query->whereRelation('person', 'telephone', 'LIKE', "%$telephone%"))
+            ->when(isset($telephone), fn($query)    => $query->whereRelation('person', 'telephone', 'LIKE', "%$telephone%"))
             ->when(
                 !isset($campo_ordenacao) && !isset($tipo_ordenacao),
                 fn($query) => $query->orderBy('created_at', 'DESC'),
