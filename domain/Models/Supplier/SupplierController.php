@@ -3,9 +3,13 @@
 namespace ERP\Models\Supplier;
 
 use App\Http\Controllers\Controller;
+use ERP\Models\Supplier\Actions\CreateAction;
+use ERP\Models\Supplier\Actions\DestroyAction;
 use ERP\Models\Supplier\Actions\IndexAction;
-use ERP\Models\Supplier\Actions\ShowAction;
 use ERP\Models\Supplier\Actions\LookupAction;
+use ERP\Models\Supplier\Actions\ShowAction;
+use ERP\Models\Supplier\Actions\UpdateAction;
+use ERP\Models\Supplier\Requests\SupplierRequest;
 use ERP\Models\Supplier\Requests\SupplierFilterRequest;
 use ERP\Models\Supplier\Resources\SupplierResource;
 use ERP\Docs\Schemas\Errors\NotFoundResponseSchema;
@@ -13,9 +17,11 @@ use ERP\Docs\Schemas\Errors\UnauthorizedResponseSchema;
 use ERP\Docs\Schemas\Errors\ValidationErrorResponseSchema;
 use ERP\Docs\Schemas\Supplier\SupplierCollectionResponseSchema;
 use ERP\Docs\Schemas\Supplier\SupplierLookupResponseSchema;
+use ERP\Docs\Schemas\Supplier\SupplierRequestSchema;
 use ERP\Docs\Schemas\Supplier\SupplierShowResponseSchema;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Response;
 use OpenApi\Attributes as OA;
 
 class SupplierController extends Controller {
@@ -27,9 +33,10 @@ class SupplierController extends Controller {
         security: [['sanctum' => []]],
         parameters: [
             new OA\Parameter(name: 'nome', in: 'query', description: 'Filtra pelo nome do fornecedor', required: false, schema: new OA\Schema(type: 'string', maxLength: 255)),
-            new OA\Parameter(name: 'cnpj', in: 'query', description: 'Filtra pelo CNPJ do fornecedor', required: false, schema: new OA\Schema(type: 'string', maxLength: 14)),
+            new OA\Parameter(name: 'cpf', in: 'query', description: 'Filtra pelo CPF da pessoa', required: false, schema: new OA\Schema(type: 'string', maxLength: 11)),
+            new OA\Parameter(name: 'cnpj', in: 'query', description: 'Filtra pelo CNPJ da pessoa', required: false, schema: new OA\Schema(type: 'string', maxLength: 14)),
             new OA\Parameter(name: 'email', in: 'query', description: 'Filtra pelo e-mail do fornecedor', required: false, schema: new OA\Schema(type: 'string', format: 'email')),
-            new OA\Parameter(name: 'telephone', in: 'query', description: 'Filtra pelo telefone do fornecedor', required: false, schema: new OA\Schema(type: 'integer')),
+            new OA\Parameter(name: 'telephone', in: 'query', description: 'Filtra pelo telefone da pessoa', required: false, schema: new OA\Schema(type: 'string')),
             new OA\Parameter(name: 'campo_ordenacao', in: 'query', description: 'Campo usado na ordenação', required: false, schema: new OA\Schema(type: 'string', example: 'created_at')),
             new OA\Parameter(name: 'tipo_ordenacao', in: 'query', description: 'Direção da ordenação', required: false, schema: new OA\Schema(type: 'string', enum: ['ASC', 'DESC'], example: 'DESC')),
             new OA\Parameter(name: 'por_pagina', in: 'query', description: 'Quantidade de itens por página; padrão 20', required: false, schema: new OA\Schema(type: 'integer', minimum: 1, default: 20)),
@@ -63,6 +70,67 @@ class SupplierController extends Controller {
     public function show(string $uuid, ShowAction $action): JsonResource
     {
         return new SupplierResource($action->handle($uuid));
+    }
+
+    #[OA\Post(
+        path: '/api/suppliers',
+        summary: 'Cria um fornecedor',
+        tags: ['Fornecedores'],
+        security: [['sanctum' => []]],
+        requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: SupplierRequestSchema::class)),
+        responses: [
+            new OA\Response(response: 200, description: 'Fornecedor criado com sucesso', content: new OA\JsonContent(ref: SupplierShowResponseSchema::class)),
+            new OA\Response(response: 401, description: 'Usuário não autenticado', content: new OA\JsonContent(ref: UnauthorizedResponseSchema::class)),
+            new OA\Response(response: 422, description: 'Erro de validação', content: new OA\JsonContent(ref: ValidationErrorResponseSchema::class)),
+        ]
+    )]
+    public function store(SupplierRequest $request, CreateAction $action): JsonResource
+    {
+        return new SupplierResource($action->handle($request->validated()));
+    }
+
+    #[OA\Put(
+        path: '/api/suppliers/{uuid}',
+        summary: 'Atualiza um fornecedor',
+        tags: ['Fornecedores'],
+        security: [['sanctum' => []]],
+        parameters: [
+            new OA\Parameter(name: 'uuid', in: 'path', description: 'UUID do fornecedor', required: true, schema: new OA\Schema(type: 'string', format: 'uuid')),
+        ],
+        requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: SupplierRequestSchema::class)),
+        responses: [
+            new OA\Response(response: 204, description: ''),
+            new OA\Response(response: 401, description: 'Usuário não autenticado', content: new OA\JsonContent(ref: UnauthorizedResponseSchema::class)),
+            new OA\Response(response: 404, description: 'Fornecedor não encontrado', content: new OA\JsonContent(ref: NotFoundResponseSchema::class)),
+            new OA\Response(response: 422, description: 'Erro de validação', content: new OA\JsonContent(ref: ValidationErrorResponseSchema::class)),
+        ]
+    )]
+    public function update(string $uuid, SupplierRequest $request, UpdateAction $action): Response
+    {
+        $action->handle($uuid, $request->validated());
+
+        return response()->noContent();
+    }
+
+    #[OA\Delete(
+        path: '/api/suppliers/{uuid}',
+        summary: 'Exclui um fornecedor',
+        tags: ['Fornecedores'],
+        security: [['sanctum' => []]],
+        parameters: [
+            new OA\Parameter(name: 'uuid', in: 'path', description: 'UUID do fornecedor', required: true, schema: new OA\Schema(type: 'string', format: 'uuid')),
+        ],
+        responses: [
+            new OA\Response(response: 204, description: ''),
+            new OA\Response(response: 401, description: 'Usuário não autenticado', content: new OA\JsonContent(ref: UnauthorizedResponseSchema::class)),
+            new OA\Response(response: 404, description: 'Fornecedor não encontrado', content: new OA\JsonContent(ref: NotFoundResponseSchema::class)),
+        ]
+    )]
+    public function destroy(string $uuid, DestroyAction $action): Response
+    {
+        $action->handle($uuid);
+
+        return response()->noContent();
     }
 
     #[OA\Get(

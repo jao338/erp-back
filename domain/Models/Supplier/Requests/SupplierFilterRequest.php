@@ -22,8 +22,12 @@ class SupplierFilterRequest extends FormRequest
                 'string',
                 'max:14',
             ],
+            'cpf' => [
+                'string',
+                'max:11',
+            ],
             'telephone' => [
-                'integer',
+                'string',
             ],
         ];
     }
