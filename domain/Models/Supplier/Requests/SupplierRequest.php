@@ -2,9 +2,9 @@
 
 namespace ERP\Models\Supplier\Requests;
 
-use App\Rules\VerifyIfIsCNPJRule;
-use App\Rules\VerifyIfIsCPFRule;
 use ERP\Enums\PersonType;
+use ERP\Rules\VerifyIfIsCNPJRule;
+use ERP\Rules\VerifyIfIsCPFRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use ERP\Models\Supplier\Supplier;
@@ -58,7 +58,7 @@ class SupplierRequest extends FormRequest
             'telefone' => [
                 'nullable',
                 'string',
-                'max:9',
+                'max:13',
             ],
         ];
     }
