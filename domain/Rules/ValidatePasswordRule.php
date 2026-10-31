@@ -5,7 +5,7 @@ namespace ERP\Rules;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 
-class PasswordRule implements ValidationRule {
+class ValidatePasswordRule implements ValidationRule {
 
     public function __construct(protected ?string $password = null) {}
 
