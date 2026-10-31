@@ -14,7 +14,7 @@ class PersonFactory extends Factory
         return [
             'person_type' => PersonType::INDIVIDUAL->value,
             'name'        => fake()->name(),
-            'cpf'         => fake()->numerify('###########'),
+            'cpf'         => fake('pt_BR')->cpf(false),
             'email'       => fake()->safeEmail(),
             'telephone'   => fake()->numerify('###########'),
         ];
