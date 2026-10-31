@@ -22,10 +22,11 @@ final readonly class IndexAction {
         $por_pagina         = $data['por_pagina'] ?? 20;
 
         return $this->model
-            ->when(isset($name), fn($query)         => $query->where('name', 'LIKE', "%$name%"))
-            ->when(isset($cnpj), fn($query)         => $query->where('cnpj', 'LIKE', "%$cnpj%"))
-            ->when(isset($email), fn($query)        => $query->where('email', 'LIKE', "%$email%"))
-            ->when(isset($telephone), fn($query)    => $query->where('telephone', 'LIKE', "%$telephone%"))
+            ->with(['person'])
+            ->when(isset($name), fn($query)         => $query->whereRelation('person', 'name', 'LIKE', "%$name%"))
+            ->when(isset($cnpj), fn($query)         => $query->whereRelation('person', 'cnpj', 'LIKE', "%$cnpj%"))
+            ->when(isset($email), fn($query)        => $query->whereRelation('person', 'email', 'LIKE', "%$email%"))
+            ->when(isset($telephone), fn($query)        => $query->whereRelation('person', 'telephone', 'LIKE', "%$telephone%"))
             ->when(
                 !isset($campo_ordenacao) && !isset($tipo_ordenacao),
                 fn($query) => $query->orderBy('created_at', 'DESC'),
