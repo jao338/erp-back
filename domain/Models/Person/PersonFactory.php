@@ -16,7 +16,7 @@ class PersonFactory extends Factory
             'name'        => fake()->name(),
             'cpf'         => fake('pt_BR')->cpf(false),
             'email'       => fake()->safeEmail(),
-            'telephone'   => fake()->numerify('###########'),
+            'telephone'   => fake()->numerify('0###########'),
         ];
     }
 }
