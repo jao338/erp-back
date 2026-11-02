@@ -26,5 +26,5 @@ class SupplierRequestSchema
     public ?string $email;
 
     #[OA\Property(description: 'Telefone da pessoa', nullable: true, example: '5511999999999')]
-    public ?string $telephone;
+    public ?string $telefone;
 }
