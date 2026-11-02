@@ -62,18 +62,4 @@ class SupplierRequest extends FormRequest
             ],
         ];
     }
-
-    public function messages(): array
-    {
-        return [
-            'cpf.required_if'    => 'O CPF é obrigatório para pessoa física.',
-            'cpf.prohibited_if'  => 'O CPF não deve ser informado para pessoa jurídica.',
-            'cpf.string'         => 'O CPF deve ser informado como texto.',
-            'cpf.size'           => 'O CPF deve conter 11 caracteres.',
-            'cnpj.required_if'   => 'O CNPJ é obrigatório para pessoa jurídica.',
-            'cnpj.prohibited_if' => 'O CNPJ não deve ser informado para pessoa física.',
-            'cnpj.string'        => 'O CNPJ deve ser informado como texto.',
-            'cnpj.size'          => 'O CNPJ deve conter 14 caracteres.',
-        ];
-    }
 }
