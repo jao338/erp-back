@@ -41,7 +41,6 @@ Route::group([
         Route::apiResource('products', ProductController::class)->names('products');
 
         Route::apiResource('suppliers', SupplierController::class)
-            ->only(['index', 'show'])
             ->names('suppliers');
 
         Route::apiResource('clients', ClientController::class)
