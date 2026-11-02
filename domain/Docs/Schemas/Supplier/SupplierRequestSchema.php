@@ -6,12 +6,12 @@ use OpenApi\Attributes as OA;
 
 #[OA\Schema(
     schema: 'SupplierRequest',
-    required: ['person_type', 'nome']
+    required: ['tipo', 'nome']
 )]
 class SupplierRequestSchema
 {
     #[OA\Property(description: 'Tipo da pessoa: 1 = pessoa física, 2 = pessoa jurídica', type: 'integer', enum: [1, 2], example: 2)]
-    public int $person_type;
+    public int $tipo;
 
     #[OA\Property(description: 'Nome do fornecedor', minLength: 3, maxLength: 255, example: 'Fornecedor de café')]
     public string $nome;
