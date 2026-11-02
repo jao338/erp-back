@@ -3,9 +3,11 @@
 namespace ERP\Models\Supplier;
 
 use ERP\Models\Shopping\Shopping;
+use ERP\Models\Person\Person;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
 class Supplier extends Model {
@@ -22,10 +24,7 @@ class Supplier extends Model {
 
     protected $fillable = [
         'uuid',
-        'name',
-        'cnpj',
-        'email',
-        'telephone',
+        'person_id',
     ];
 
     public function getRouteKeyName(): string
@@ -36,6 +35,11 @@ class Supplier extends Model {
     public function shopping(): HasMany
     {
         return $this->hasMany(Shopping::class);
+    }
+
+    public function person(): BelongsTo
+    {
+        return $this->belongsTo(Person::class);
     }
 
     protected static function newFactory()

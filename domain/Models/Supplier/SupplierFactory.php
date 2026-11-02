@@ -2,6 +2,7 @@
 
 namespace ERP\Models\Supplier;
 
+use ERP\Models\Person\Person;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SupplierFactory extends Factory
@@ -12,10 +13,7 @@ class SupplierFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'              => fake()->name(),
-            'email'             => fake()->unique()->safeEmail(),
-            'cnpj'              => fake('pt_BR')->cnpj(false),
-            'telephone'         => fake('pt_BR')->cellphone(false),
+            'person_id' => Person::factory(),
         ];
     }
 }
