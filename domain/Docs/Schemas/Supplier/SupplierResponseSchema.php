@@ -6,12 +6,12 @@ use OpenApi\Attributes as OA;
 
 #[OA\Schema(
     schema: 'SupplierResponse',
-    required: ['person_type', 'nome', 'criado_em', 'atualizado_em', 'uuid']
+    required: ['tipo', 'nome', 'criado_em', 'atualizado_em', 'uuid']
 )]
 class SupplierResponseSchema
 {
     #[OA\Property(description: 'Tipo da pessoa: 1 = pessoa física, 2 = pessoa jurídica', type: 'integer', enum: [1, 2], example: 2)]
-    public int $person_type;
+    public int $tipo;
 
     #[OA\Property(description: 'Nome do fornecedor', example: 'Fornecedor de café')]
     public string $nome;
@@ -26,7 +26,7 @@ class SupplierResponseSchema
     public ?string $email;
 
     #[OA\Property(description: 'Telefone da pessoa', nullable: true, example: '5511999999999')]
-    public ?string $telephone;
+    public ?string $telefone;
 
     #[OA\Property(description: 'Data de criação do fornecedor', format: 'date-time', example: '2026-01-15T10:30:00Z')]
     public string $criado_em;
