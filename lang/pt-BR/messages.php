@@ -43,5 +43,6 @@ return [
     'user_verified'                            => 'Usuário já verificado! Faça login e aproveite!',
     'too_many_attempts'                        => 'Número máximo de tentativas excedido. Solicite um novo código',
     'code_not_found'                           => 'Código não encontrado!',
+    'not_found'                                => 'Registro não encontrado!',
     'code_not_match'                           => 'Os códigos não batem, verifique o email o último email recebido e tente novamente! ',
 ];

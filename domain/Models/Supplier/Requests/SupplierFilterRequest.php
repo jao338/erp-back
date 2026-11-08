@@ -3,6 +3,7 @@
 namespace ERP\Models\Supplier\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SupplierFilterRequest extends FormRequest
 {
@@ -16,14 +17,29 @@ class SupplierFilterRequest extends FormRequest
             ],
             'email' => [
                 'string',
-                'email',
             ],
             'cnpj' => [
                 'string',
                 'max:14',
             ],
-            'telephone' => [
-                'integer',
+            'cpf' => [
+                'string',
+                'max:11',
+            ],
+            'telefone' => [
+                'string',
+            ],
+            'campo_ordenacao' => [
+                'sometimes',
+                'nullable',
+                'string',
+                Rule::in(['created_at', 'updated_at', 'uuid', 'id']),
+            ],
+            'tipo_ordenacao' => [
+                'sometimes',
+                'nullable',
+                'string',
+                Rule::in(['ASC', 'DESC']),
             ],
         ];
     }

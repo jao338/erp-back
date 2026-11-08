@@ -2,6 +2,7 @@
 
 namespace ERP\Models\Shopping\Actions;
 
+use ERP\Exceptions\ERPException;
 use ERP\Models\Shopping\Shopping;
 
 final readonly class ShowAction {
@@ -10,9 +11,16 @@ final readonly class ShowAction {
 
     public function handle(string $uuid): ?Shopping
     {
-        return $this->model
+        $shopping = $this->model
             ->with(['shoppingItems', 'supplier'])
             ->where('uuid', $uuid)
-            ->firstOrFail();
+            ->first();
+
+        throw_if(
+            !$shopping,
+            new ERPException(__('messages.not_found'), 404),
+        );
+
+        return $shopping;
     }
 }

@@ -14,23 +14,22 @@ final readonly class IndexAction {
 
         $name               = $data['nome'] ?? null;
         $cnpj               = $data['cnpj'] ?? null;
+        $cpf                = $data['cpf'] ?? null;
         $email              = $data['email'] ?? null;
-        $telephone          = $data['telephone'] ?? null;
+        $telephone          = $data['telefone'] ?? null;
 
-        $tipo_ordenacao     = $data['tipo_ordenacao'] ?? null;
-        $campo_ordenacao    = $data['campo_ordenacao'] ?? null;
+        $tipo_ordenacao     = $data['tipo_ordenacao'] ?? 'DESC';
+        $campo_ordenacao    = $data['campo_ordenacao'] ?? 'created_at';
         $por_pagina         = $data['por_pagina'] ?? 20;
 
         return $this->model
-            ->when(isset($name), fn($query)         => $query->where('name', 'LIKE', "%$name%"))
-            ->when(isset($cnpj), fn($query)         => $query->where('cnpj', 'LIKE', "%$cnpj%"))
-            ->when(isset($email), fn($query)        => $query->where('email', 'LIKE', "%$email%"))
-            ->when(isset($telephone), fn($query)    => $query->where('telephone', 'LIKE', "%$telephone%"))
-            ->when(
-                !isset($campo_ordenacao) && !isset($tipo_ordenacao),
-                fn($query) => $query->orderBy('created_at', 'DESC'),
-                fn($query) => $query->orderBy($campo_ordenacao, $tipo_ordenacao)
-            )
+            ->with(['person'])
+            ->when(isset($name), fn($query)         => $query->whereRelation('person', 'name', 'LIKE', "%$name%"))
+            ->when(isset($cnpj), fn($query)         => $query->whereRelation('person', 'cnpj', 'LIKE', "%$cnpj%"))
+            ->when(isset($cpf), fn($query)          => $query->whereRelation('person', 'cpf', 'LIKE', "%$cpf%"))
+            ->when(isset($email), fn($query)        => $query->whereRelation('person', 'email', 'LIKE', "%$email%"))
+            ->when(isset($telephone), fn($query)    => $query->whereRelation('person', 'telephone', 'LIKE', "%$telephone%"))
+            ->orderBy($campo_ordenacao, $tipo_ordenacao)
             ->paginate($por_pagina);
     }
 }

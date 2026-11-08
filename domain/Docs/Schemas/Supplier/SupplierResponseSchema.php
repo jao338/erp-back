@@ -6,21 +6,27 @@ use OpenApi\Attributes as OA;
 
 #[OA\Schema(
     schema: 'SupplierResponse',
-    required: ['nome', 'cnpj', 'email', 'telephone', 'criado_em', 'atualizado_em', 'uuid']
+    required: ['tipo', 'nome', 'criado_em', 'atualizado_em', 'uuid']
 )]
 class SupplierResponseSchema
 {
+    #[OA\Property(description: 'Tipo da pessoa: 1 = pessoa física, 2 = pessoa jurídica', type: 'integer', enum: [1, 2], example: 2)]
+    public int $tipo;
+
     #[OA\Property(description: 'Nome do fornecedor', example: 'Fornecedor de café')]
     public string $nome;
 
-    #[OA\Property(description: 'CNPJ do fornecedor', maxLength: 14, example: '12345678000190')]
-    public string $cnpj;
+    #[OA\Property(description: 'CPF da pessoa', maxLength: 11, nullable: true, example: '12345678901')]
+    public ?string $cpf;
 
-    #[OA\Property(description: 'E-mail do fornecedor', format: 'email', example: 'contato@fornecedor.com')]
-    public string $email;
+    #[OA\Property(description: 'CNPJ da pessoa', maxLength: 14, nullable: true, example: '12345678000190')]
+    public ?string $cnpj;
 
-    #[OA\Property(description: 'Telefone do fornecedor', example: 5511999999999)]
-    public int $telephone;
+    #[OA\Property(description: 'E-mail da pessoa', format: 'email', nullable: true, example: 'contato@fornecedor.com')]
+    public ?string $email;
+
+    #[OA\Property(description: 'Telefone da pessoa', nullable: true, example: '5511999999999')]
+    public ?string $telefone;
 
     #[OA\Property(description: 'Data de criação do fornecedor', format: 'date-time', example: '2026-01-15T10:30:00Z')]
     public string $criado_em;
