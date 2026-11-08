@@ -33,7 +33,7 @@ class SupplierFilterRequest extends FormRequest
                 'sometimes',
                 'nullable',
                 'string',
-                Rule::in(['created_at', 'updated_at', 'uuid']),
+                Rule::in(['created_at', 'updated_at', 'uuid', 'id']),
             ],
             'tipo_ordenacao' => [
                 'sometimes',
