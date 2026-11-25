@@ -11,6 +11,10 @@ final readonly class LookupAction {
 
     public function handle(): Collection
     {
-        return $this->model->join('person', 'person.id', '=', 'supplier.person_id')->select('supplier.uuid as value', 'person.name as label')->get();
+        return $this->model
+            ->select('supplier.uuid as value', 'person.name as label')
+            ->join('person', 'person.id', '=', 'supplier.person_id')
+            ->where('supplier.active', false)
+            ->get();
     }
 }

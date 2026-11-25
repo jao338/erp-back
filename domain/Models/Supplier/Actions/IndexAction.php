@@ -29,6 +29,7 @@ final readonly class IndexAction {
             ->when(isset($cpf), fn($query)          => $query->whereRelation('person', 'cpf', 'LIKE', "%$cpf%"))
             ->when(isset($email), fn($query)        => $query->whereRelation('person', 'email', 'LIKE', "%$email%"))
             ->when(isset($telephone), fn($query)    => $query->whereRelation('person', 'telephone', 'LIKE', "%$telephone%"))
+            ->where('active', true)
             ->orderBy($campo_ordenacao, $tipo_ordenacao)
             ->paginate($por_pagina);
     }

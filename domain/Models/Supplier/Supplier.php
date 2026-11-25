@@ -20,11 +20,14 @@ class Supplier extends Model {
     public $incrementing    = true;
     public $timestamps      = true;
 
-    protected $casts  = [];
+    protected $casts  = [
+        'active' => 'boolean',
+    ];
 
     protected $fillable = [
         'uuid',
         'person_id',
+        'active',
     ];
 
     public function getRouteKeyName(): string

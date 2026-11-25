@@ -10,8 +10,6 @@ final readonly class DestroyAction
 
     public function handle(string $uuid): bool
     {
-        $supplier = $this->model->where('uuid', $uuid)->firstOrFail();
-
-        return $supplier->delete();
+        return $this->model->where('uuid', $uuid)->firstOrFail()->update(['active' => false]);
     }
 }
