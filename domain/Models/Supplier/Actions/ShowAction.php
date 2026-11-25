@@ -2,6 +2,7 @@
 
 namespace ERP\Models\Supplier\Actions;
 
+use ERP\Exceptions\ERPException;
 use ERP\Models\Supplier\Supplier;
 
 final readonly class ShowAction {
@@ -10,8 +11,15 @@ final readonly class ShowAction {
 
     public function handle(string $uuid): ?Supplier
     {
-        return $this->model
+        $supplier = $this->model
             ->where('uuid', $uuid)
-            ->firstOrFail();
+            ->first();
+
+        throw_if(
+            !$supplier,
+            new ERPException(__('messages.not_found'), 404),
+        );
+
+        return $supplier;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace ERP\Models\Client\Actions;
 
+use ERP\Exceptions\ERPException;
 use ERP\Models\Client\Client;
 
 final readonly class ShowAction {
@@ -10,8 +11,15 @@ final readonly class ShowAction {
 
     public function handle(string $uuid): ?Client
     {
-        return $this->model
+        $client = $this->model
             ->where('uuid', $uuid)
-            ->firstOrFail();
+            ->first();
+
+        throw_if(
+            !$client,
+            new ERPException(__('messages.not_found'), 404),
+        );
+
+        return $client;
     }
 }

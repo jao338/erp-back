@@ -2,6 +2,7 @@
 
 namespace ERP\Models\Product\Actions;
 
+use ERP\Exceptions\ERPException;
 use ERP\Models\Product\Product;
 
 final readonly class ShowAction {
@@ -10,8 +11,15 @@ final readonly class ShowAction {
 
     public function handle(string $uuid): ?Product
     {
-        return $this->model
+        $product = $this->model
             ->where('uuid', $uuid)
-            ->firstOrFail();
+            ->first();
+
+        throw_if(
+            !$product,
+            new ERPException(__('messages.not_found'), 404),
+        );
+
+        return $product;
     }
 }

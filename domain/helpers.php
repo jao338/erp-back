@@ -82,6 +82,38 @@ function isCNPJ($cnpj)
     return $cnpj === $cnpj_original;
 }
 
+/**
+ * Multiplicação do CNPJ
+ *
+ * @param string $cnpj Os digitos do CNPJ
+ * @param int    $posicoes A posição que vai iniciar a regressão
+ * @return int O
+ *
+ */
+function multiplica_cnpj($cnpj, $posicao = 5)
+{
+    // Variável para o cálculo
+    $calculo = 0;
+
+    // Laço para percorrer os item do cnpj
+    for ($i = 0; $i < strlen($cnpj); $i++) {
+        // Cálculo mais posição do CNPJ * a posição
+        $calculo = $calculo + ($cnpj[$i] * $posicao);
+
+        // Decrementa a posição a cada volta do laço
+        $posicao--;
+
+        // Se a posição for menor que 2, ela se torna 9
+        if ($posicao < 2) {
+            $posicao = 9;
+        }
+    }
+
+    // Retorna o cálculo
+    return $calculo;
+}
+
+
 function digits($value)
 {
     return preg_replace('/[^\d]/', '', $value);

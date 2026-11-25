@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('supplier', function (Blueprint $table) {
             $table->id();
             $table->uuid()->unique();
-            $table->string('name');
-            $table->string('cnpj');
-            $table->string('email')->nullable();
-            $table->string('telephone')->nullable();
+            $table->boolean('active')->default(true);
+            $table->foreignId('person_id')
+                ->unique()
+                ->constrained('person')
+                ->restrictOnDelete();
             $table->timestamps();
         });
     }
