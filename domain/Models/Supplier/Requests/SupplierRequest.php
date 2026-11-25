@@ -15,7 +15,10 @@ class SupplierRequest extends FormRequest
     {
         $personId = null;
         if ($this->isMethod('put') || $this->isMethod('patch')) {
-            $personId = Supplier::where('uuid', $this->route('uuid'))->value('person_id');
+            $supplierUuid = $this->route('supplier');
+
+            $personId = Supplier::where('uuid', $supplierUuid)
+                ->value('person_id');
         }
 
         return [

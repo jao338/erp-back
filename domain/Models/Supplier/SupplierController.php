@@ -114,7 +114,7 @@ class SupplierController extends Controller {
 
     #[OA\Delete(
         path: '/api/suppliers/{uuid}',
-        summary: 'Exclui um fornecedor',
+        summary: 'Inativa um fornecedor',
         tags: ['Fornecedores'],
         security: [['sanctum' => []]],
         parameters: [
