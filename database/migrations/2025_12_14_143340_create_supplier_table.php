@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('supplier', function (Blueprint $table) {
             $table->id();
             $table->uuid()->unique();
+            $table->boolean('active')->default(true);
             $table->foreignId('person_id')
                 ->unique()
                 ->constrained('person')
