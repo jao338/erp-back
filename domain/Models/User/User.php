@@ -65,7 +65,7 @@ class User extends Authenticatable {
                 $user->uuid = (string) Str::uuid();
             }
             $user->password     = bcrypt($user->password);
-            $user->verify_at    = NULL;
+            $user->verify_at    = now();
         });
     }
 }
